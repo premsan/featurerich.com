@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>user</title>
+    </head>
+
+    <body id="top">
+        <header th:fragment="header">
+            <div>
+                <h1>
+                    <a>Users</a>
+                </h1>
+            </div>
+        </header>
+
+        <main>
+            <section th:each="user: ${users}">
+                <div th:text="${user.id}">user.id</div>
+                <div th:text="${user.version}">user.version</div>
+                <div th:text="${user.email}">user.email</div>
+                <div th:text="${user.disabled}">user.disabled</div>
+                <div th:text="${user.updatedAt}">user.updatedAt</div>
+                <div th:text="${user.updatedBy}">user.updatedBy</div>
+            </section>
+        </main>
+
+        <footer th:fragment="footer"></footer>
+    </body>
+</html>

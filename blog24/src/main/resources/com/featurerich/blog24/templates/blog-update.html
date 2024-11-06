@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Blog Update</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1>Blog Update</h1>
+        <form
+            action="#"
+            th:action="@{'/blogs/update/' +${blog.id}}"
+            th:object="${blog}"
+            method="post"
+        >
+            <p>Title: <textarea type="text" th:field="*{title}" /></p>
+            <p>Content: <textarea type="text" th:field="*{content}" /></p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </form>
+    </body>
+</html>

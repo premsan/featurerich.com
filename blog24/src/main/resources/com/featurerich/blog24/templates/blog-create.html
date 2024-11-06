@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Blog Create</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1>Blog Create</h1>
+        <form
+            action="#"
+            th:action="@{/blogs/create}"
+            th:object="${blog}"
+            method="post"
+        >
+            Title: <textarea type="text" th:field="*{title}" /> Content:
+            <textarea type="text" th:field="*{content}" />
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </form>
+    </body>
+</html>
