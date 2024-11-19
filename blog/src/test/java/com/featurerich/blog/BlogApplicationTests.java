@@ -1,10 +1,10 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Blog24ApplicationTests {
+class BlogApplicationTests {
 
     @Test
     void contextLoads() {}

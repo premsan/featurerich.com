@@ -1,3 +1,3 @@
 include("security")
-include("blog24")
+include("blog")
 include("ui")

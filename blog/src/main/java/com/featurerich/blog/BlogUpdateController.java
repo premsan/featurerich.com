@@ -1,4 +1,4 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
-@RequestMapping("/blogs/update")
+@RequestMapping("/blog/update")
 public class BlogUpdateController {
 
     private final BlogRepository blogRepository;

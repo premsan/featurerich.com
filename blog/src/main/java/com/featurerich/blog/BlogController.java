@@ -1,4 +1,4 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class BlogController {
 
     private final BlogRepository blogRepository;
 
-    @GetMapping("/blogs/{id}")
+    @GetMapping("/blog/{id}")
     public ModelAndView view(
             @CurrentSecurityContext SecurityContext securityContext,
             final @PathVariable String id) {
@@ -45,14 +45,14 @@ public class BlogController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/blogs/create")
+    @GetMapping("/blog/create")
     public ModelAndView getCreate(Authentication principal) {
         ModelAndView model = new ModelAndView("blog-create");
         model.addObject("blog", new CreateRequest());
         return model;
     }
 
-    @PostMapping("/blogs/create")
+    @PostMapping("/blog/create")
     public ModelAndView postCreate(@ModelAttribute CreateRequest request) {
         final Blog savedBlog =
                 blogRepository.save(

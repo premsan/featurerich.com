@@ -13,7 +13,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role_authorities")
+@Table(name = "security_role_authority")
 public class RoleAuthority {
 
     @Id private String id;

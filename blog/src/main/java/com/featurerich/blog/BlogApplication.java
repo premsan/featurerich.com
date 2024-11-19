@@ -1,4 +1,4 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,9 +8,9 @@ import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 @SpringBootApplication
 @ComponentScan("com.featurerich")
 @EnableJdbcRepositories("com.featurerich")
-public class Blog24Application {
+public class BlogApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Blog24Application.class, args);
+        SpringApplication.run(BlogApplication.class, args);
     }
 }

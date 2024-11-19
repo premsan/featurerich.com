@@ -1,4 +1,4 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import static org.asciidoctor.Asciidoctor.Factory.create;
 

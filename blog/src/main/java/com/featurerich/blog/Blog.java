@@ -1,4 +1,4 @@
-package com.featurerich.blog24;
+package com.featurerich.blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "blogs")
+@Table(name = "blog_blog")
 public class Blog {
 
     @Id private String id;

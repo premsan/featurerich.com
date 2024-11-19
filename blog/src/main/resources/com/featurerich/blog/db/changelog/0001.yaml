@@ -4,7 +4,7 @@ databaseChangeLog:
        author: adminfeaturerich
        changes:
          -  createTable:
-              tableName: blogs
+              tableName: blog
               columns:
                 -  column:
                      name: id
