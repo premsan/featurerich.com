@@ -1,8 +1,7 @@
-package com.featurerich.security.roleauthority;
+package com.featurerich.blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -11,20 +10,15 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "security_role_authority")
-public class RoleAuthority {
+@Table(name = "blog_blog")
+public class Blog {
 
     @Id private String id;
 
     @Version private Long version;
 
-    @Column private String roleId;
+    @Column private String title;
 
-    @Column private String authorityId;
-
-    @Column private Long updatedAt;
-
-    @Column private String updatedBy;
+    @Column private String content;
 }

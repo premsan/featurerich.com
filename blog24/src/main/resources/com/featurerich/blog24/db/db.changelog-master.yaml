@@ -1,5 +1,0 @@
-databaseChangeLog:
-  - includeAll:
-      path: com/featurerich/security/db/changelog
-  - includeAll:
-      path: com/featurerich/blog24/db/changelog

@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "roles")
+@Table(name = "security_role")
 public class Role {
 
     @Id private String id;
