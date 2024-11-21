@@ -12,11 +12,12 @@
                 <div class="field">
                     <label class="label">JSON input</label>
                     <div class="control">
-                        <input
-                            class="input"
+                        <textarea
+                            class="textarea"
                             type="text"
                             th:field="*{input}"
                             placeholder="JSON input"
+                            rows="10"
                         />
                     </div>
                     <ul>
@@ -30,10 +31,17 @@
 
                 <div class="control">
                     <button type="submit" class="button is-primary">
-                        Submit
+                        Format
                     </button>
                 </div>
             </form>
+        </section>
+        <section class="section">
+            <div class="content">
+                <pre th:text="${output}">
+                    output
+                </pre>
+            </div>
         </section>
     </body>
 </html>
