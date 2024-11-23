@@ -1,8 +1,8 @@
 plugins {
 	java
-	alias(libs.plugins.spring.boot)
-	alias(libs.plugins.spring.dependency.management)
-	alias(libs.plugins.spotless)
+	alias(libs.plugins.org.springframework.boot)
+	alias(libs.plugins.io.spring.dependency.management)
+	alias(libs.plugins.com.diffplug.spotless)
 }
 
 group = "com.featurerich"
@@ -35,7 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
-	implementation(libs.asciidoctorj)
+	implementation(libs.org.asciidoctor.asciidoctorj)
 
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

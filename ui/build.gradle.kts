@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("com.diffplug.spotless")
+    alias(libs.plugins.com.diffplug.spotless)
 }
 
 group = "com.featurerich"
@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform(libs.junit.bom))
+    testImplementation(platform(libs.org.junit.junit.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 

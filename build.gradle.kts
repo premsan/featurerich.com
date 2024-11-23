@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    alias(libs.plugins.spotless)
+    alias(libs.plugins.com.diffplug.spotless)
 }
 
 /*

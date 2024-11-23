@@ -1,8 +1,8 @@
 plugins {
     `java-library`
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.spotless)
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
+    alias(libs.plugins.com.diffplug.spotless)
 }
 
 group = "com.featurerich"
