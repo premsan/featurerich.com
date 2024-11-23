@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.authentication.DisabledException;
@@ -35,6 +36,7 @@ import org.springframework.util.CollectionUtils;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@EnableJdbcRepositories("com.featurerich.security")
 public class SecurityConfiguration {
 
     @Bean
