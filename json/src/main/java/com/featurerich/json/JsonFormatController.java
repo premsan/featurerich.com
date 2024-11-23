@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class JSONFormatController {
+public class JsonFormatController {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
