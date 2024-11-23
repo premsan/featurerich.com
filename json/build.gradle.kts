@@ -10,11 +10,8 @@ group = "com.featurerich"
 val artifactVersion: String by rootProject.extra
 version = artifactVersion
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+val javaToolChainVersion: Int by rootProject.extra
+java.toolchain.languageVersion =  JavaLanguageVersion.of(javaToolChainVersion)
 
 configurations {
     compileOnly {
