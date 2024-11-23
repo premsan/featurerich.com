@@ -6,7 +6,9 @@ plugins {
 }
 
 group = "com.featurerich"
-version = "0.0.1-SNAPSHOT"
+
+val artifactVersion: String by rootProject.extra
+version = artifactVersion
 
 repositories {
     mavenCentral()
