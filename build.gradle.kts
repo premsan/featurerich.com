@@ -1,10 +1,18 @@
 plugins {
     id("java")
-    id("com.diffplug.spotless") version "6.25.0"
+    alias(libs.plugins.com.diffplug.spotless)
 }
 
+/*
+ * Extra properties
+ */
+val artifactVersion by extra("0.0.1-SNAPSHOT")
+val javaToolChainVersion by extra(17)
+val googleJavaFormatVersion by extra("1.19.2")
+val htmlTabWidth by extra(4)
+
 group = "com.featurerich"
-version = "0.0.1-SNAPSHOT"
+version = artifactVersion
 
 spotless {
     ratchetFrom("origin/main")

@@ -1,5 +1,7 @@
 plugins {
-    id("java")
+    java
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
     alias(libs.plugins.com.diffplug.spotless)
 }
 
@@ -8,11 +10,30 @@ group = "com.featurerich"
 val artifactVersion: String by rootProject.extra
 version = artifactVersion
 
+val javaToolChainVersion: Int by rootProject.extra
+java.toolchain.languageVersion =  JavaLanguageVersion.of(javaToolChainVersion)
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation(project(":ui"))
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    compileOnly("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    annotationProcessor("org.projectlombok:lombok")
+
+
     testImplementation(platform(libs.org.junit.junit.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
@@ -28,6 +49,7 @@ spotless {
 
         target("src/**/templates/**/*.html")
     }
+
     java {
         val googleJavaFormatVersion: String by rootProject.extra
 
