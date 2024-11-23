@@ -1,7 +1,13 @@
 plugins {
     id("java")
-    id("com.diffplug.spotless") version "6.25.0"
+    alias(libs.plugins.spotless)
 }
+
+/*
+ * Extra properties
+ */
+val googleJavaFormatVersion by extra("1.19.2")
+val htmlTabWidth by extra(4)
 
 group = "com.featurerich"
 version = "0.0.1-SNAPSHOT"

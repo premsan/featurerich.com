@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform(libs.junit.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
@@ -21,11 +21,15 @@ tasks.test {
 
 spotless {
     format("html") {
+        val htmlTabWidth: Int by rootProject.extra
+        prettier().config(mapOf("tabWidth" to htmlTabWidth))
+
         target("src/**/templates/**/*.html")
-        prettier().config(mapOf("tabWidth" to 4))
     }
     java {
-        googleJavaFormat("1.19.2").aosp().reflowLongStrings().skipJavadocFormatting()
+        val googleJavaFormatVersion: String by rootProject.extra
+
+        googleJavaFormat(googleJavaFormatVersion).aosp().reflowLongStrings().skipJavadocFormatting()
         formatAnnotations()
     }
 }
