@@ -21,4 +21,8 @@ public class Blog {
     @Column private String title;
 
     @Column private String content;
+
+    @Column private Long updatedAt;
+
+    @Column private String updatedBy;
 }

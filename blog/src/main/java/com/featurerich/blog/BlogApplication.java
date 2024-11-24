@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.featurerich.blog")
+@ComponentScan("com.featurerich")
 @EnableJdbcRepositories("com.featurerich.blog")
 public class BlogApplication {
 

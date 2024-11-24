@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.featurerich.json")
+@ComponentScan("com.featurerich")
 public class JsonApplication {
 
     public static void main(String[] args) {
