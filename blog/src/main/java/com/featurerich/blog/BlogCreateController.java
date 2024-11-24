@@ -27,7 +27,7 @@ public class BlogCreateController {
 
     @GetMapping("/blog/blog-create")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_CREATE')")
-    public ModelAndView getCreate() {
+    public ModelAndView getBlogCreate() {
 
         ModelAndView model = new ModelAndView("com/featurerich/blog/templates/blog-create");
         model.addObject("blogCreate", new BlogCreate());
@@ -37,7 +37,7 @@ public class BlogCreateController {
 
     @PostMapping("/blog/blog-create")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_CREATE')")
-    public ModelAndView postCreate(
+    public ModelAndView postBlogCreate(
             @Valid @ModelAttribute("blogCreate") BlogCreate blogCreate,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes,

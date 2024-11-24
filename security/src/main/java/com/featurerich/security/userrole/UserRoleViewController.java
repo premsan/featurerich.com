@@ -16,7 +16,7 @@ public class UserRoleViewController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/security/user-role-view/{id}")
-    public ModelAndView getRoleAuthorityView(@PathVariable final String id) {
+    public ModelAndView getUserRoleView(@PathVariable final String id) {
 
         Optional<UserRole> userRoleOptional = userRoleRepository.findById(id);
 

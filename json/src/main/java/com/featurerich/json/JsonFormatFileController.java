@@ -24,7 +24,7 @@ public class JsonFormatFileController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/json/json-format-file")
-    public ModelAndView getJSONFormatFile() {
+    public ModelAndView getJsonFormatFile() {
 
         final ModelAndView modelAndView =
                 new ModelAndView("com/featurerich/json/templates/json-format-file");
@@ -34,7 +34,7 @@ public class JsonFormatFileController {
     }
 
     @PostMapping("/json/json-format-file")
-    public ModelAndView postJSONFormatFile(
+    public ModelAndView postJsonFormatFile(
             @Valid @ModelAttribute("jsonFormatFile") JSONFormatFile jsonFormatFile,
             BindingResult bindingResult) {
 
