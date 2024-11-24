@@ -18,12 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class JSONFormatController {
+public class JsonFormatController {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/json/json-format")
-    public ModelAndView getJSONFormat() {
+    public ModelAndView getJsonFormat() {
 
         final ModelAndView modelAndView =
                 new ModelAndView("com/featurerich/json/templates/json-format");
@@ -33,7 +33,7 @@ public class JSONFormatController {
     }
 
     @PostMapping("/json/json-format")
-    public ModelAndView postJSONFormat(
+    public ModelAndView postJsonFormat(
             @Valid @ModelAttribute("jsonFormat") JSONFormat jsonFormat,
             BindingResult bindingResult) {
 

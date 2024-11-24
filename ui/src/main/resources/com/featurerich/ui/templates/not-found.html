@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<div lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="(url)">
-    <p>404 NOT FOUND</p>
-    <div th:text="${url}">Back URL</div>
-</div>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{com/featurerich/ui/templates/head-fragment}"></head>
+    <body>
+        <div class="content">
+            <h6>404 NOT FOUND</h6>
+        </div>
+    </body>
+</html>

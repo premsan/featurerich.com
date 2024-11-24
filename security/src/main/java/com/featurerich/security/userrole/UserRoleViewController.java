@@ -16,13 +16,13 @@ public class UserRoleViewController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/security/user-role-view/{id}")
-    public ModelAndView getRoleAuthorityView(@PathVariable final String id) {
+    public ModelAndView getUserRoleView(@PathVariable final String id) {
 
         Optional<UserRole> userRoleOptional = userRoleRepository.findById(id);
 
         if (userRoleOptional.isEmpty()) {
 
-            return new ModelAndView("not-found");
+            return new ModelAndView("com/featurerich/ui/templates/not-found");
         }
 
         final ModelAndView modelAndView =

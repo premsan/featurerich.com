@@ -13,10 +13,10 @@ public interface AuthorityRepository
         extends CrudRepository<Authority, String>, PagingAndSortingRepository<Authority, String> {
 
     @Query(
-            "SELECT a.id, a.version, a.name, a.updated_at, a.updated_by FROM authorities a INNER"
-                    + " JOIN role_authorities ra ON a.id = ra.authority_id INNER JOIN roles r ON"
-                    + " ra.role_id = r.id INNER JOIN user_roles ur ON ur.role_id = r.id WHERE"
-                    + " ur.user_id = :userId")
+            "SELECT a.id, a.version, a.name, a.updated_at, a.updated_by FROM security_authority a"
+                    + " INNER JOIN security_role_authority ra ON a.id = ra.authority_id INNER JOIN"
+                    + " security_role r ON ra.role_id = r.id INNER JOIN security_user_role ur ON"
+                    + " ur.role_id = r.id WHERE ur.user_id = :userId")
     Collection<Authority> findByUserId(final String userId);
 
     Page<Authority> findById(String id, Pageable pageable);

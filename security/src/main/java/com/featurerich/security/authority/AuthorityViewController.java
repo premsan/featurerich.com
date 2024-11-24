@@ -22,7 +22,7 @@ public class AuthorityViewController {
 
         if (optionalAuthority.isEmpty()) {
 
-            return new ModelAndView("not-found");
+            return new ModelAndView("com/featurerich/ui/templates/not-found");
         }
 
         final ModelAndView modelAndView =

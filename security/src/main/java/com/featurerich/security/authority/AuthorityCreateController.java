@@ -25,7 +25,7 @@ public class AuthorityCreateController {
     private final AuthorityRepository authorityRepository;
 
     @GetMapping("/security/authority-create")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
     public ModelAndView getAuthorityCreate() {
 
         final ModelAndView modelAndView =
@@ -36,7 +36,7 @@ public class AuthorityCreateController {
     }
 
     @PostMapping("/security/authority-create")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
     public ModelAndView postAuthorityCreate(
             @Valid @ModelAttribute("authorityCreate") AuthorityCreate authorityCreate,
             BindingResult bindingResult,
