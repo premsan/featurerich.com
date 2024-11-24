@@ -2,6 +2,7 @@ package com.featurerich.blog;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ public class BlogDeleteController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-delete/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_DELETE')")
     public ModelAndView getBlogDelete(final @PathVariable String id) {
 
         final Optional<Blog> optionalBlog = blogRepository.findById(id);
@@ -32,6 +34,7 @@ public class BlogDeleteController {
     }
 
     @PostMapping("/blog/blog-delete/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_DELETE')")
     public ModelAndView postBlogDelete(
             final @PathVariable String id, RedirectAttributes redirectAttributes) {
 

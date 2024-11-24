@@ -26,7 +26,7 @@ public class BlogUpdateController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_UPDATE')")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
     public ModelAndView getBlogUpdate(@PathVariable String id) {
 
         final Optional<Blog> optionalBlog = blogRepository.findById(id);
@@ -50,7 +50,7 @@ public class BlogUpdateController {
     }
 
     @PostMapping("/blog/blog-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_UPDATE')")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
     public ModelAndView postBlogUpdate(
             @PathVariable String id,
             @Valid @ModelAttribute("blogUpdate") BlogUpdate blogUpdate,
