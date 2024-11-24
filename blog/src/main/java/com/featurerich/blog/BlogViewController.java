@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class BlogViewController {
 
-    private final BlogApplicationContext applicationContext;
+    private final BlogApplicationContext blogApplicationContext;
 
     private final BlogRepository blogRepository;
 
@@ -31,7 +31,7 @@ public class BlogViewController {
         model.addObject("blog", optionalBlog.get());
         model.addObject(
                 "blogContentHtml",
-                applicationContext
+                blogApplicationContext
                         .getAsciidoctor()
                         .convert(optionalBlog.get().getContent(), Options.builder().build()));
 
