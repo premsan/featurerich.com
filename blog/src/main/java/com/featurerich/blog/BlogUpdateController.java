@@ -25,7 +25,7 @@ public class BlogUpdateController {
 
     private final BlogRepository blogRepository;
 
-    @GetMapping("/blog/blog-update")
+    @GetMapping("/blog/blog-update/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_UPDATE')")
     public ModelAndView getBlogUpdate(@PathVariable String id) {
 
@@ -33,7 +33,7 @@ public class BlogUpdateController {
 
         if (optionalBlog.isEmpty()) {
 
-            return new ModelAndView("not-found");
+            return new ModelAndView("com/featurerich/ui/templates/not-found");
         }
 
         final ModelAndView modelAndView =
@@ -49,7 +49,7 @@ public class BlogUpdateController {
         return modelAndView;
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/blog/blog-update/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_UPDATE')")
     public ModelAndView postBlogUpdate(
             @PathVariable String id,
@@ -62,7 +62,7 @@ public class BlogUpdateController {
 
         if (optionalBlog.isEmpty()) {
 
-            return new ModelAndView("not-found");
+            return new ModelAndView("com/featurerich/ui/templates/not-found");
         }
 
         ModelAndView modelAndView = new ModelAndView();
@@ -75,10 +75,13 @@ public class BlogUpdateController {
             return modelAndView;
         }
 
-        optionalBlog.get().setTitle(blogUpdate.getTitle());
-        optionalBlog.get().setContent(blogUpdate.getContent());
-        optionalBlog.get().setUpdatedAt(System.currentTimeMillis());
-        optionalBlog.get().setUpdatedBy(securityContext.getAuthentication().getName());
+        final Blog blog = optionalBlog.get();
+
+        blog.setTitle(blogUpdate.getTitle());
+        blog.setContent(blogUpdate.getContent());
+        blog.setUpdatedAt(System.currentTimeMillis());
+        blog.setUpdatedBy(securityContext.getAuthentication().getName());
+        blogRepository.save(blog);
 
         redirectAttributes.addAttribute("id", id);
         return new ModelAndView("redirect:/blog/blog-view/{id}");

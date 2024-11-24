@@ -17,13 +17,13 @@ public class BlogViewController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-view/{id}")
-    public ModelAndView view(final @PathVariable String id) {
+    public ModelAndView getBlogView(final @PathVariable String id) {
 
         final Optional<Blog> optionalBlog = blogRepository.findById(id);
 
         if (optionalBlog.isEmpty()) {
 
-            return new ModelAndView("not-found");
+            return new ModelAndView("com/featurerich/ui/templates/not-found");
         }
 
         final ModelAndView model = new ModelAndView("com/featurerich/blog/templates/blog-view");

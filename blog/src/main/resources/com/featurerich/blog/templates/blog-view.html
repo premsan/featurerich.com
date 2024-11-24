@@ -9,5 +9,19 @@
                 <div>[(${blogContentHtml})]</div>
             </div>
         </section>
+        <section class="section">
+            <div class="buttons">
+                <a
+                    th:href="@{'/blog/blog-update/' + ${blog.id}}"
+                    class="button is-primary"
+                    >Update</a
+                >
+                <a
+                    th:href="@{'/blog/blog-delete/' + ${blog.id}}"
+                    class="button is-danger"
+                    >Delete</a
+                >
+            </div>
+        </section>
     </body>
 </html>
