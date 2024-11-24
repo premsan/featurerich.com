@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class BlogController {
 
-    private Asciidoctor asciidoctor;
+    private final Asciidoctor asciidoctor;
 
     private final BlogRepository blogRepository;
 

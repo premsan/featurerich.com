@@ -15,6 +15,7 @@ repositories {
 }
 
 tasks.bootJar {
+    requiresUnpack("**/asciidoctorj-*.jar")
 }
 
 dependencies {

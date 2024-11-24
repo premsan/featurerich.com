@@ -23,6 +23,10 @@ repositories {
 	mavenCentral()
 }
 
+tasks.bootJar {
+	requiresUnpack("**/asciidoctorj-*.jar")
+}
+
 dependencies {
 	implementation(project(":ui"))
 	implementation(project(":security"))
