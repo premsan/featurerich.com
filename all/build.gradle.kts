@@ -19,6 +19,9 @@ tasks.bootJar {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
     implementation(project(":security"))
     implementation(project(":blog"))
     implementation(project(":ui"))

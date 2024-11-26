@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties(prefix = "com.featurerich.ui.links")
-public class NavbarConfigurationProperties {
+@ConfigurationProperties(prefix = "com.featurerich.ui")
+public class UIConfigurationProperties {
 
-    private Map<String, List<String>> linksByModule;
+    private Map<String, List<String>> links;
 }
