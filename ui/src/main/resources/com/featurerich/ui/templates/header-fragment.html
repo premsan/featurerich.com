@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <i class="fa-solid fa-house"></i>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link"> Links </a>
+                    <div class="navbar-dropdown">
+                        <a
+                            class="navbar-item"
+                            th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
+                            th:text="${link}"
+                            th:href="${link}"
+                        >
+                            LINK
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
