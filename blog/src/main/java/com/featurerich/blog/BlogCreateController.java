@@ -21,8 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class BlogCreateController {
 
-    private final BlogApplicationContext applicationContext;
-
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-create")
