@@ -4,13 +4,14 @@
     <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
     <body>
         <section class="section">
-            <div class="grid">
-                <div
-                    class="cell box"
+            <div class="buttons">
+                <a
+                    class="button is-link is-light"
                     th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
+                    th:text="${link}"
+                    th:href="${link}"
+                    >link</a
                 >
-                    <a th:text="${link}" th:href="${link}"> ${link} </a>
-                </div>
             </div>
         </section>
     </body>
