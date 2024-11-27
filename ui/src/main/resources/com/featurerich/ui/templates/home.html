@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{com/featurerich/ui/templates/head-fragment}"></head>
+    <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
+    <body>
+        <section class="section">
+            <div class="buttons">
+                <a
+                    class="button is-link is-light"
+                    th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
+                    th:text="${link}"
+                    th:href="${link}"
+                    >link</a
+                >
+            </div>
+        </section>
+    </body>
+</html>
