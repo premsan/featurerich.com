@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{com/featurerich/ui/templates/head-fragment}"></head>
+    <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
+    <body>
+        <section class="section">
+            <div class="grid">
+                <div
+                    class="cell box"
+                    th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
+                >
+                    <a th:text="${link}" th:href="${link}"> ${link} </a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
