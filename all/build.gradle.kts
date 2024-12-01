@@ -25,6 +25,7 @@ dependencies {
     implementation(project(":security"))
     implementation(project(":blog"))
     implementation(project(":ui"))
+    implementation(project(":grep"))
     implementation(project(":json"))
 
     implementation("org.springframework.boot:spring-boot-starter")
