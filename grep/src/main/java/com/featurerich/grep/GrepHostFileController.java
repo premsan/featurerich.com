@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class GrepHostFileController {
 
-    private final Integer DEFAULT_MAX_TARGET_LENGTH = 8192;
+    private static final Integer DEFAULT_MAX_TARGET_LENGTH = 8192;
+    private static final String VARIABLE_REPLACEMENT = "(.*)";
+
     private final Pattern variablePattern = Pattern.compile("\\[(.*?)]");
 
-    @GetMapping("/grep/host-file")
+    @GetMapping("/grep/grep-host-file")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
     public ModelAndView getGrepHostFile() {
 
         ModelAndView model = new ModelAndView("com/featurerich/grep/templates/grep-host-file");
@@ -36,7 +40,8 @@ public class GrepHostFileController {
         return model;
     }
 
-    @PostMapping("/grep/host-file")
+    @PostMapping("/grep/grep-host-file")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
     public ModelAndView postGrepHostFile(
             @Valid @ModelAttribute("grepHostFile") GrepHostFile grepHostFile,
             BindingResult bindingResult) {
@@ -51,7 +56,9 @@ public class GrepHostFileController {
             return modelAndView;
         }
 
-        final Matcher matcher = variablePattern.matcher(grepHostFile.getPattern());
+        final Matcher matcher =
+                variablePattern.matcher(
+                        grepHostFile.getPattern().replaceAll("[\\\\<({^\\-=$!|})?*+.>]", "\\\\$0"));
 
         final List<String> variables = new ArrayList<>();
         final List<List<String>> matches = new ArrayList<>();
@@ -61,7 +68,7 @@ public class GrepHostFileController {
             variables.add(matcher.group(1));
         }
 
-        final Pattern variableMatcher = Pattern.compile(matcher.replaceAll("(.*)"));
+        final Pattern variableMatcher = Pattern.compile(matcher.replaceAll(VARIABLE_REPLACEMENT));
 
         try (final BufferedReader reader =
                 new BufferedReader(new FileReader(grepHostFile.getPath()))) {
@@ -100,7 +107,7 @@ public class GrepHostFileController {
             }
         } catch (final IOException e) {
 
-            bindingResult.reject(null, e.getMessage());
+            bindingResult.rejectValue("path", null, e.getMessage());
             modelAndView.setViewName("com/featurerich/grep/templates/grep-host-file");
             modelAndView.addObject("grepHostFile", grepHostFile);
         }
