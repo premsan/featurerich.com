@@ -20,6 +20,11 @@ public class UIConfigurationProperties {
 
         final List<String> allLinks = new ArrayList<>();
 
+        if (links == null) {
+
+            return allLinks;
+        }
+
         for (final Map.Entry<String, List<String>> listEntry : links.entrySet()) {
 
             allLinks.addAll(listEntry.getValue());
