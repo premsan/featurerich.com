@@ -110,6 +110,8 @@ public class GrepHostFileController {
             bindingResult.rejectValue("path", null, e.getMessage());
             modelAndView.setViewName("com/featurerich/grep/templates/grep-host-file");
             modelAndView.addObject("grepHostFile", grepHostFile);
+
+            return modelAndView;
         }
 
         modelAndView.addObject(grepHostFile);
