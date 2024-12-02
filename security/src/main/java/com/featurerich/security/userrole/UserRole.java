@@ -14,15 +14,23 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "security_user_role")
 public class UserRole {
 
-    @Id private String id;
+    @Id
+    @Column("id")
+    private String id;
 
-    @Version private Long version;
+    @Version
+    @Column("version")
+    private Long version;
 
-    @Column private String userId;
+    @Column("user_id")
+    private String userId;
 
-    @Column private String roleId;
+    @Column("role_id")
+    private String roleId;
 
-    @Column private Long updatedAt;
+    @Column("updated_at")
+    private Long updatedAt;
 
-    @Column private String updatedBy;
+    @Column("updated_by")
+    private String updatedBy;
 }

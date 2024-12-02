@@ -14,15 +14,23 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "blog_blog")
 public class Blog {
 
-    @Id private String id;
+    @Id
+    @Column("id")
+    private String id;
 
-    @Version private Long version;
+    @Version
+    @Column("version")
+    private Long version;
 
-    @Column private String title;
+    @Column("title")
+    private String title;
 
-    @Column private String content;
+    @Column("content")
+    private String content;
 
-    @Column private Long updatedAt;
+    @Column("updated_at")
+    private Long updatedAt;
 
-    @Column private String updatedBy;
+    @Column("updated_by")
+    private String updatedBy;
 }
