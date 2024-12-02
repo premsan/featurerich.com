@@ -16,15 +16,23 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "security_user")
 public class User {
 
-    @Id private String id;
+    @Id
+    @Column("id")
+    private String id;
 
-    @Version private Long version;
+    @Version
+    @Column("version")
+    private Long version;
 
-    @Column private String email;
+    @Column("email")
+    private String email;
 
-    @Column private Boolean disabled;
+    @Column("disabled")
+    private Boolean disabled;
 
-    @Column private Long updatedAt;
+    @Column("updated_at")
+    private Long updatedAt;
 
-    @Column private String updatedBy;
+    @Column("updated_by")
+    private String updatedBy;
 }

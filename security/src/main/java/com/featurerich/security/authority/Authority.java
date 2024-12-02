@@ -16,13 +16,20 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "security_authority")
 public class Authority {
 
-    @Id private String id;
+    @Id
+    @Column("id")
+    private String id;
 
-    @Version private Long version;
+    @Version
+    @Column("version")
+    private Long version;
 
-    @Column private String name;
+    @Column("name")
+    private String name;
 
-    @Column private Long updatedAt;
+    @Column("updated_at")
+    private Long updatedAt;
 
-    @Column private String updatedBy;
+    @Column("updated_by")
+    private String updatedBy;
 }
