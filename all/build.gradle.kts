@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":grep"))
     implementation(project(":json"))
+    implementation(project(":mock"))
 
     implementation("org.springframework.boot:spring-boot-starter")
 
