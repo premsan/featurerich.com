@@ -22,16 +22,18 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
-    implementation(project(":security"))
     implementation(project(":blog"))
-    implementation(project(":ui"))
     implementation(project(":grep"))
     implementation(project(":json"))
+    implementation(project(":mock"))
+    implementation(project(":reservation"))
+    implementation(project(":security"))
+    implementation(project(":ui"))
 
     implementation("org.springframework.boot:spring-boot-starter")
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    runtimeOnly("com.h2database:h2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

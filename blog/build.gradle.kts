@@ -30,8 +30,8 @@ tasks.bootJar {
 dependencies {
 	implementation(project(":ui"))
 	implementation(project(":security"))
-	implementation("org.springframework.boot:spring-boot-starter-web")
 
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -39,10 +39,10 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation(libs.org.asciidoctor.asciidoctorj)
+	runtimeOnly("com.h2database:h2")
 
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
