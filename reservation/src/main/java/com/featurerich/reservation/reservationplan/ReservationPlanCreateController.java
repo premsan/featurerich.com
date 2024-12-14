@@ -36,7 +36,7 @@ public class ReservationPlanCreateController {
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView getReservationPlanCreate() {
 
-        ModelAndView model =
+        final ModelAndView model =
                 new ModelAndView("com/featurerich/reservation/templates/reservation-plan-create");
         model.addObject("reservationPlanCreate", new ReservationPlanCreate());
 
@@ -47,9 +47,9 @@ public class ReservationPlanCreateController {
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView postReservationPlanCreate(
             @Valid @ModelAttribute("reservationPlanCreate")
-                    ReservationPlanCreate reservationPlanCreate,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,
+                    final ReservationPlanCreate reservationPlanCreate,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes,
             @CurrentSecurityContext final SecurityContext securityContext) {
 
         ModelAndView modelAndView = new ModelAndView();

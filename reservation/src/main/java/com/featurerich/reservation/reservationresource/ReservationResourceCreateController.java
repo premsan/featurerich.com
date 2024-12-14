@@ -27,7 +27,7 @@ public class ReservationResourceCreateController {
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView getReservationResourceCreate() {
 
-        ModelAndView model =
+        final ModelAndView model =
                 new ModelAndView(
                         "com/featurerich/reservation/templates/reservation-resource-create");
         model.addObject("reservationResourceCreate", new ReservationResourceCreate());
@@ -39,12 +39,12 @@ public class ReservationResourceCreateController {
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView postReservationResourceCreate(
             @Valid @ModelAttribute("reservationResourceCreate")
-                    ReservationResourceCreate reservationResourceCreate,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,
+                    final ReservationResourceCreate reservationResourceCreate,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes,
             @CurrentSecurityContext final SecurityContext securityContext) {
 
-        ModelAndView modelAndView = new ModelAndView();
+        final ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
 

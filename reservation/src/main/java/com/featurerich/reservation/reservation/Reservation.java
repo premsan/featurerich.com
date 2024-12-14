@@ -22,8 +22,8 @@ public class Reservation {
     @Column("version")
     private Long version;
 
-    @Column("unit_id")
-    private Long unitId;
+    @Column("plan_id")
+    private String planId;
 
     @Column("name")
     private String name;
@@ -36,4 +36,10 @@ public class Reservation {
 
     @Column("end_at")
     private Long endAt;
+
+    @Column("updated_at")
+    private Long updatedAt;
+
+    @Column("updated_by")
+    private String updatedBy;
 }
