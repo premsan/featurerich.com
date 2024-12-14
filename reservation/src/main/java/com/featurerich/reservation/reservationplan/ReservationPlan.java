@@ -24,7 +24,7 @@ public class ReservationPlan {
     private Long version;
 
     @Column("resource_id")
-    private Long resourceId;
+    private String resourceId;
 
     @Column("chrono_unit")
     private ChronoUnit chronoUnit;
@@ -34,6 +34,9 @@ public class ReservationPlan {
 
     @Column("max_unit")
     private Long maxUnit;
+
+    @Column("zone_id")
+    private String zoneId;
 
     @Column("start_at")
     private Long startAt;

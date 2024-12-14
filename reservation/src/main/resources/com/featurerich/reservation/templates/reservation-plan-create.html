@@ -35,8 +35,8 @@
                         <select th:field="*{chronoUnit}">
                             <option
                                 th:each="chronoUnit : ${T(java.time.temporal.ChronoUnit).values()}"
-                                th:value="${chronoUnit}"
-                                th:text="${chronoUnit}"
+                                th:value="${chronoUnit.name()}"
+                                th:text="${chronoUnit.name()}"
                             ></option>
                         </select>
                     </div>
@@ -88,11 +88,31 @@
                 </div>
 
                 <div class="field">
+                    <label class="label">Zone Id</label>
+                    <div class="select is-link">
+                        <select th:field="*{zoneId}">
+                            <option
+                                th:each="zoneId : ${T(java.time.ZoneId).getAvailableZoneIds()}"
+                                th:value="${zoneId}"
+                                th:text="${zoneId}"
+                            ></option>
+                        </select>
+                    </div>
+                    <ul>
+                        <li
+                            th:each="error : ${#fields.errors('zoneId')}"
+                            th:text="${error}"
+                            class="help is-danger"
+                        />
+                    </ul>
+                </div>
+
+                <div class="field">
                     <label class="label">Start At</label>
                     <div class="control">
                         <input
                             class="input"
-                            type="number"
+                            type="datetime-local"
                             th:field="*{startAt}"
                             placeholder="Start At"
                         />
@@ -111,7 +131,7 @@
                     <div class="control">
                         <input
                             class="input"
-                            type="number"
+                            type="datetime-local"
                             th:field="*{endAt}"
                             placeholder="End At"
                         />

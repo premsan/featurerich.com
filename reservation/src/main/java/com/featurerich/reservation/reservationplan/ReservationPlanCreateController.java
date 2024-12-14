@@ -1,11 +1,19 @@
 package com.featurerich.reservation.reservationplan;
 
+import com.featurerich.reservation.reservationresource.ReservationResource;
+import com.featurerich.reservation.reservationresource.ReservationResourceRepository;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
@@ -21,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class ReservationPlanCreateController {
 
+    private final ReservationResourceRepository reservationResourceRepository;
     private final ReservationPlanRepository reservationPlanRepository;
 
     @GetMapping("/reservation/reservation-plan-create")
@@ -54,17 +63,38 @@ public class ReservationPlanCreateController {
             return modelAndView;
         }
 
+        final Optional<ReservationResource> optionalReservationResource =
+                reservationResourceRepository.findById(reservationPlanCreate.getResourceId());
+
+        if (optionalReservationResource.isEmpty()) {
+
+            bindingResult.rejectValue("resourceId", null, "Invalid resourceId");
+
+            modelAndView.setViewName(
+                    "com/featurerich/reservation/templates/reservation-plan-create");
+            modelAndView.addObject("reservationPlanCreate", reservationPlanCreate);
+
+            return modelAndView;
+        }
+
         final ReservationPlan reservationPlan =
                 reservationPlanRepository.save(
                         new ReservationPlan(
                                 UUID.randomUUID().toString(),
                                 null,
-                                null,
+                                optionalReservationResource.get().getId(),
                                 reservationPlanCreate.getChronoUnit(),
                                 reservationPlanCreate.getMinUnit(),
                                 reservationPlanCreate.getMaxUnit(),
-                                reservationPlanCreate.getStartAt(),
-                                reservationPlanCreate.getEndAt(),
+                                reservationPlanCreate.getZoneId().getId(),
+                                reservationPlanCreate
+                                        .getStartAt()
+                                        .atZone(reservationPlanCreate.getZoneId())
+                                        .toEpochSecond(),
+                                reservationPlanCreate
+                                        .getEndAt()
+                                        .atZone(reservationPlanCreate.getZoneId())
+                                        .toEpochSecond(),
                                 System.currentTimeMillis(),
                                 securityContext.getAuthentication().getName()));
 
@@ -76,16 +106,20 @@ public class ReservationPlanCreateController {
     @Setter
     private static class ReservationPlanCreate {
 
-        private Long resourceId;
+        @NotBlank private String resourceId;
 
-        private ChronoUnit chronoUnit;
+        @NotNull private ChronoUnit chronoUnit;
 
-        private Long minUnit;
+        @NotNull private Long minUnit;
 
-        private Long maxUnit;
+        @NotNull private Long maxUnit;
 
-        private Long startAt;
+        @NotNull private ZoneId zoneId;
 
-        private Long endAt;
+        @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        private LocalDateTime startAt;
+
+        @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        private LocalDateTime endAt;
     }
 }
