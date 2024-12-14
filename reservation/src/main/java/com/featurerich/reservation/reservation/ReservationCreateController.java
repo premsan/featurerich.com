@@ -60,6 +60,17 @@ public class ReservationCreateController {
             return modelAndView;
         }
 
+        if (!reservationCreate.getEndAt().isAfter(reservationCreate.getStartAt())) {
+
+            bindingResult.rejectValue("startAt", null, "endAt isNotAfter startAt");
+            bindingResult.rejectValue("endAt", null, "endAt isNotAfter startAt");
+
+            modelAndView.setViewName("com/featurerich/reservation/templates/reservation-create");
+            modelAndView.addObject("reservationCreate", reservationCreate);
+
+            return modelAndView;
+        }
+
         final Optional<ReservationPlan> optionalReservationPlan =
                 reservationPlanRepository.findById(reservationCreate.getPlanId());
 
