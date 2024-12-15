@@ -1,5 +1,5 @@
 plugins {
-    java
+    `java-library`
     alias(libs.plugins.org.springframework.boot)
     alias(libs.plugins.io.spring.dependency.management)
     alias(libs.plugins.com.diffplug.spotless)
@@ -10,32 +10,25 @@ group = "com.featurerich"
 val artifactVersion: String by rootProject.extra
 version = artifactVersion
 
-val javaToolChainVersion: Int by rootProject.extra
-java.toolchain.languageVersion =  JavaLanguageVersion.of(javaToolChainVersion)
-
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(project(":scheduled"))
-    implementation(project(":security"))
     implementation(project(":ui"))
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-oauth2-client")
+    api("org.springframework.session:spring-session-core")
+    api("org.springframework.session:spring-session-jdbc")
+
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.liquibase:liquibase-core")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
-    runtimeOnly("com.h2database:h2")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -47,7 +40,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.withType<Test> {
+tasks.test {
     useJUnitPlatform()
 }
 
