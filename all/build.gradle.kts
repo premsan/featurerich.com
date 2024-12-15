@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":json"))
     implementation(project(":mock"))
     implementation(project(":reservation"))
+    implementation(project(":scheduled"))
     implementation(project(":security"))
     implementation(project(":ui"))
 

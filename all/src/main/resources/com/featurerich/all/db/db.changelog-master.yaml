@@ -5,3 +5,5 @@ databaseChangeLog:
       path: com/featurerich/reservation/db/changelog
   - includeAll:
       path: com/featurerich/security/db/changelog
+  - includeAll:
+      path: com/featurerich/scheduled/db/changelog
