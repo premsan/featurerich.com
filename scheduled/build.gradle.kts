@@ -14,6 +14,12 @@ repositories {
     mavenCentral()
 }
 
+tasks {
+    withType<JavaCompile> {
+        options.compilerArgs.add("-Xlint:unchecked")
+    }
+}
+
 dependencies {
     implementation(project(":ui"))
 

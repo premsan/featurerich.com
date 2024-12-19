@@ -48,6 +48,25 @@
                     </ul>
                 </div>
 
+                <div class="field">
+                    <label class="label">Attributes</label>
+
+                    <div th:each="chronoUnit : ${enumClass.getEnumConstants()}">
+                        <div class="form-group">
+                            <label  th:text="${chronoUnit.name()}">chronoUnit</label>
+                            <input type="text" class="form-control" th:field="*{attributes['__${chronoUnit.name()}__']}" />
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li
+                                th:each="error : ${#fields.errors('attributes')}"
+                                th:text="${error}"
+                                class="help is-danger"
+                        />
+                    </ul>
+                </div>
+
                 <div class="control">
                     <button type="submit" class="button is-primary">
                         Submit

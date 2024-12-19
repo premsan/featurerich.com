@@ -15,9 +15,9 @@ public class ScheduledJobRunnable implements Runnable {
         final Optional<ScheduledJobConfiguration> scheduledJobConfigurationOptional =
                 scheduledJobConfigurationRepository.findById(scheduledJob.getId());
 
-        scheduledJob.run(
-                scheduledJobConfigurationOptional
-                        .map(ScheduledJobConfiguration::getAttributes)
-                        .orElse(null));
+//        scheduledJob.run(
+//                scheduledJobConfigurationOptional
+//                        .map(ScheduledJobConfiguration::getAttributes)
+//                        .orElse(null));
     }
 }
