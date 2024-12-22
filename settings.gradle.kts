@@ -1,5 +1,6 @@
 include("all")
 include("blog")
+include("db")
 include("grep")
 include("json")
 include("mock")

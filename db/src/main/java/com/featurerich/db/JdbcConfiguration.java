@@ -1,4 +1,4 @@
-package com.featurerich.scheduled;
+package com.featurerich.db;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

@@ -23,6 +23,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     implementation(project(":blog"))
+    implementation(project(":db"))
     implementation(project(":grep"))
     implementation(project(":json"))
     implementation(project(":mock"))
