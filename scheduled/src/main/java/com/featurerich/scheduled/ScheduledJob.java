@@ -1,6 +1,8 @@
 package com.featurerich.scheduled;
 
 import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public interface ScheduledJob {
@@ -15,9 +17,9 @@ public interface ScheduledJob {
         return Duration.ofNanos(Long.MAX_VALUE);
     }
 
-    default Class<? extends Enum<?>> attributeNames() {
+    default List<String> attributeNames() {
 
-        return null;
+        return Collections.emptyList();
     }
 
     void run(final Map<String, String> attributes);
