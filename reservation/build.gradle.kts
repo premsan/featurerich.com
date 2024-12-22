@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":db"))
     implementation(project(":scheduled"))
     implementation(project(":security"))
     implementation(project(":ui"))

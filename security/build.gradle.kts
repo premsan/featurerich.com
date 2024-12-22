@@ -15,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":db"))
     implementation(project(":ui"))
 
     api("org.springframework.boot:spring-boot-starter-security")
