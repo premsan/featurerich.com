@@ -34,8 +34,8 @@ import org.springframework.session.security.web.authentication.SpringSessionReme
 import org.springframework.util.CollectionUtils;
 
 @Configuration
-//@EnableWebSecurity
-//@EnableMethodSecurity
+@EnableWebSecurity
+@EnableMethodSecurity
 @EnableJdbcRepositories("com.featurerich.security")
 public class SecurityConfiguration {
 

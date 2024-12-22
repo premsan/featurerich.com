@@ -8,10 +8,6 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.temporal.ChronoUnit;
-import java.util.EnumMap;
-import java.util.Map;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -37,10 +33,4 @@ public class ReservationResource {
 
     @Column("updated_by")
     private String updatedBy;
-
-    @Column("attributes")
-    private Map<String, String> attributes;
-
-    @Column("attributes")
-    private EnumMap<ChronoUnit, String> attributes2;
 }

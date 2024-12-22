@@ -1,7 +1,7 @@
 package com.featurerich.scheduled;
 
 import java.time.temporal.ChronoUnit;
-import java.util.EnumMap;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +33,5 @@ public class ScheduledJobConfiguration {
     private Long period;
 
     @Column("attributes")
-    private EnumMap<? extends Enum<?>, String> attributes;
+    private Map<String, String> attributes;
 }
