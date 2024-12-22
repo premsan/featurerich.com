@@ -16,7 +16,7 @@ import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration
 
 @Configuration
 @RequiredArgsConstructor
-public class ScheduledJobConfigurationAttributesConverter extends AbstractJdbcConfiguration {
+public class JdbcConfiguration extends AbstractJdbcConfiguration {
 
     private final ObjectMapper objectMapper;
 
