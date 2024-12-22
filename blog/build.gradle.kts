@@ -28,8 +28,9 @@ tasks.bootJar {
 }
 
 dependencies {
-	implementation(project(":ui"))
+	implementation(project(":db"))
 	implementation(project(":security"))
+	implementation(project(":ui"))
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
