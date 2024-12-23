@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - includeAll:
+      path: com/featurerich/payment/db/changelog
+  - includeAll:
+      path: com/featurerich/security/db/changelog
+  - includeAll:
+      path: com/featurerich/scheduled/db/changelog
