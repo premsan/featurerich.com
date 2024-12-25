@@ -5,32 +5,27 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties(prefix = "com.featurerich.payment.gateway")
+@ConfigurationProperties(prefix = "com.featurerich.payment")
 public class PaymentGatewayConfiguration {
 
-    private Map<String, GatewayConfiguration> gatewayConfigurationById;
+    private Map<String, Configuration> gateway;
 
     @Getter
     @Setter
-    private static class GatewayConfiguration {
+    public static class Configuration {
 
         private String createPaymentUrl;
-        private HttpMethod createPaymentMethod;
 
         private String fetchPaymentStatusUrl;
-        private HttpMethod fetchPaymentStatusMethod;
 
         private String accountId;
 
         private String clientKeyId;
 
         private String clientKeySecret;
-
-        private boolean minorUnit;
     }
 }

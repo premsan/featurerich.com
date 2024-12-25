@@ -22,4 +22,9 @@ public class PaymentGatewayRepository {
 
         return null;
     }
+
+    public List<PaymentGateway> findAll() {
+
+        return gateways;
+    }
 }

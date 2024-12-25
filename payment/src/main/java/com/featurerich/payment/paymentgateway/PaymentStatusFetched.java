@@ -5,4 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PaymentStatusFetched {}
+public class PaymentStatusFetched {
+
+    private PaymentStatus paymentStatus;
+}

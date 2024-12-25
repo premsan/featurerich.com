@@ -1,5 +1,6 @@
 package com.featurerich.payment.paymentrequest;
 
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class PaymentRequest {
     private String gatewayId;
 
     @Column("gateway_attributes")
-    private String gatewayAttributes;
+    private Map<String, String> gatewayAttributes;
 
     @Column("updated_at")
     private Long updatedAt;
