@@ -15,9 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
@@ -34,8 +32,8 @@ import org.springframework.session.security.web.authentication.SpringSessionReme
 import org.springframework.util.CollectionUtils;
 
 @Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+// @EnableWebSecurity
+// @EnableMethodSecurity
 @EnableJdbcRepositories("com.featurerich.security")
 public class SecurityConfiguration {
 

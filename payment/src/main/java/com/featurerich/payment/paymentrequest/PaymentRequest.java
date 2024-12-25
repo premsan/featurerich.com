@@ -1,4 +1,4 @@
-package com.featurerich.payment;
+package com.featurerich.payment.paymentrequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +24,12 @@ public class PaymentRequest {
 
     @Column("payment_id")
     private String paymentId;
+
+    @Column("gateway_id")
+    private String gatewayId;
+
+    @Column("gateway_attributes")
+    private String gatewayAttributes;
 
     @Column("updated_at")
     private Long updatedAt;
