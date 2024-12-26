@@ -27,5 +27,7 @@ public class PaymentGatewayConfiguration {
         private String clientKeyId;
 
         private String clientKeySecret;
+
+        private String themeId;
     }
 }

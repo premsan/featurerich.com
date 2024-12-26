@@ -1,5 +1,6 @@
 package com.featurerich.payment.paymentgateway;
 
+import com.featurerich.payment.paymentattempt.PaymentAttemptStatus;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,8 @@ public class AdyenPaymentGateway implements PaymentGateway {
     }
 
     @Override
-    public PaymentCreated paymentCreate(final PaymentCreate paymentCreate) {
+    public PaymentAttemptCreated paymentAttemptCreate(
+            final PaymentAttemptCreate paymentAttemptCreate) {
 
         final PaymentGatewayConfiguration.Configuration configuration =
                 paymentGatewayConfiguration.getGateway().get(id());
@@ -36,18 +38,23 @@ public class AdyenPaymentGateway implements PaymentGateway {
         final HashMap<String, Object> amount = new HashMap<>();
         amount.put(
                 "value",
-                paymentCreate
+                paymentAttemptCreate
                         .getAmount()
                         .multiply(
                                 BigDecimal.TEN.pow(
-                                        paymentCreate.getCurrency().getDefaultFractionDigits())));
-        amount.put("currency", paymentCreate.getCurrency().getCurrencyCode());
+                                        paymentAttemptCreate
+                                                .getCurrency()
+                                                .getDefaultFractionDigits())));
+        amount.put("currency", paymentAttemptCreate.getCurrency().getCurrencyCode());
         body.put("amount", amount);
 
-        body.put("returnUrl", "http://localhost");
-        body.put("reference", paymentCreate.getReferenceId());
+        body.put(
+                "returnUrl",
+                "http://localhost:8080/payment/payment-attempt-update/"
+                        + paymentAttemptCreate.getReferenceId());
+        body.put("reference", paymentAttemptCreate.getReferenceId());
         body.put("mode", "hosted");
-        body.put("themeId", "9cc783a4-76d4-450f-84e5-556f3e70ae10");
+        body.put("themeId", configuration.getThemeId());
 
         final Map<String, Object> response =
                 restClient
@@ -59,15 +66,16 @@ public class AdyenPaymentGateway implements PaymentGateway {
                         .retrieve()
                         .body(new ParameterizedTypeReference<>() {});
 
-        final PaymentCreated paymentCreated = new PaymentCreated();
-        paymentCreated.setPaymentId((String) response.get("id"));
-        paymentCreated.setPaymentUrl((String) response.get("url"));
+        final PaymentAttemptCreated paymentAttemptCreated = new PaymentAttemptCreated();
+        paymentAttemptCreated.setId((String) response.get("id"));
+        paymentAttemptCreated.setUrl((String) response.get("url"));
 
-        return paymentCreated;
+        return paymentAttemptCreated;
     }
 
     @Override
-    public PaymentStatusFetched paymentStatusFetch(final PaymentStatusFetch paymentStatusFetch) {
+    public PaymentAttemptStatusFetched paymentAttemptStatusFetch(
+            final PaymentAttemptStatusFetch paymentAttemptStatusFetch) {
 
         final PaymentGatewayConfiguration.Configuration configuration =
                 paymentGatewayConfiguration.getGateway().get(id());
@@ -78,33 +86,34 @@ public class AdyenPaymentGateway implements PaymentGateway {
                         .uri(
                                 UriComponentsBuilder.fromUriString(
                                                 configuration.getFetchPaymentStatusUrl())
-                                        .buildAndExpand("OK")
-                                        .expand(
-                                                new HashMap<>() {
-                                                    {
-                                                        put("sessionResult", "sessionResult");
-                                                    }
-                                                })
+                                        .queryParam(
+                                                "sessionResult",
+                                                paymentAttemptStatusFetch
+                                                        .getAttemptAttributes()
+                                                        .get("sessionResult"))
+                                        .buildAndExpand(paymentAttemptStatusFetch.getAttemptId())
                                         .toUri())
+                        .header("x-API-key", configuration.getClientKeySecret())
                         .retrieve()
                         .body(new ParameterizedTypeReference<>() {});
 
-        final PaymentStatusFetched paymentStatusFetched = new PaymentStatusFetched();
-        paymentStatusFetched.setPaymentStatus(map(response.get("status")));
-        return paymentStatusFetched;
+        final PaymentAttemptStatusFetched paymentAttemptStatusFetched =
+                new PaymentAttemptStatusFetched();
+        paymentAttemptStatusFetched.setAttemptStatus(map(response.get("status")));
+        return paymentAttemptStatusFetched;
     }
 
-    private PaymentStatus map(final String status) {
+    private PaymentAttemptStatus map(final String status) {
 
         switch (status) {
             case "completed":
-                return PaymentStatus.COMPLETED;
+                return PaymentAttemptStatus.COMPLETED;
             case "paymentPending":
-                return PaymentStatus.PENDING;
+                return PaymentAttemptStatus.PENDING;
             case "canceled":
-                return PaymentStatus.CANCELLED;
+                return PaymentAttemptStatus.CANCELLED;
             case "expired":
-                return PaymentStatus.EXPIRED;
+                return PaymentAttemptStatus.EXPIRED;
             default:
                 return null;
         }

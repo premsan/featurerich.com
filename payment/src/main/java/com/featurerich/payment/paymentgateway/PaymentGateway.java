@@ -4,7 +4,8 @@ public interface PaymentGateway {
 
     String id();
 
-    PaymentCreated paymentCreate(final PaymentCreate paymentCreate);
+    PaymentAttemptCreated paymentAttemptCreate(final PaymentAttemptCreate paymentAttemptCreate);
 
-    PaymentStatusFetched paymentStatusFetch(final PaymentStatusFetch paymentStatusFetch);
+    PaymentAttemptStatusFetched paymentAttemptStatusFetch(
+            final PaymentAttemptStatusFetch paymentAttemptStatusFetch);
 }

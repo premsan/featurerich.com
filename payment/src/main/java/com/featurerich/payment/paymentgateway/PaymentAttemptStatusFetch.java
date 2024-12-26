@@ -6,11 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PaymentStatusFetch {
+public class PaymentAttemptStatusFetch {
 
-    private String paymentId;
+    private String attemptId;
 
     private String referenceId;
 
-    private Map<String, String> gatewayAttributes;
+    private Map<String, String> attemptAttributes;
 }

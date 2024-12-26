@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PaymentCreate {
+public class PaymentAttemptCreate {
 
     private String referenceId;
 

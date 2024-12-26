@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PaymentStatusFetched {
+public class PaymentAttemptCreated {
 
-    private PaymentStatus paymentStatus;
+    private String id;
+
+    private String url;
 }

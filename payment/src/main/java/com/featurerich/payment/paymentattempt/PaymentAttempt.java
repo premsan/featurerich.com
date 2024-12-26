@@ -1,4 +1,4 @@
-package com.featurerich.payment.paymentrequest;
+package com.featurerich.payment.paymentattempt;
 
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -12,8 +12,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "payment_payment_request")
-public class PaymentRequest {
+@Table(name = "payment_payment_attempt")
+public class PaymentAttempt {
 
     @Id
     @Column("id")
@@ -29,8 +29,17 @@ public class PaymentRequest {
     @Column("gateway_id")
     private String gatewayId;
 
-    @Column("gateway_attributes")
-    private Map<String, String> gatewayAttributes;
+    @Column("gateway_attempt_id")
+    private String gatewayAttemptId;
+
+    @Column("gateway_attempt_url")
+    private String gatewayAttemptUrl;
+
+    @Column("gateway_attempt_attributes")
+    private Map<String, String> gatewayAttemptAttributes;
+
+    @Column("status")
+    private PaymentAttemptStatus status;
 
     @Column("updated_at")
     private Long updatedAt;
