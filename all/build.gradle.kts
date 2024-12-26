@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":grep"))
     implementation(project(":json"))
     implementation(project(":mock"))
+    implementation(project(":payment"))
     implementation(project(":reservation"))
     implementation(project(":scheduled"))
     implementation(project(":security"))
