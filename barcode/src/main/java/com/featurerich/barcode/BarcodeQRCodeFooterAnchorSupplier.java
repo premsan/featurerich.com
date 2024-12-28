@@ -17,6 +17,6 @@ public class BarcodeQRCodeFooterAnchorSupplier implements FooterAnchorSupplier {
         return new Anchor(
                 "/barcode/qr-code-view?contents="
                         + new ServletServerHttpRequest(httpServletRequest).getURI(),
-                "QR Code");
+                "Generate QR Code");
     }
 }
