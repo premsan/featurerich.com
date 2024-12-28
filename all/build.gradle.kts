@@ -22,6 +22,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
+    implementation(project(":barcode"))
     implementation(project(":blog"))
     implementation(project(":db"))
     implementation(project(":grep"))
