@@ -1,4 +1,5 @@
 include("all")
+include("barcode")
 include("blog")
 include("db")
 include("grep")
