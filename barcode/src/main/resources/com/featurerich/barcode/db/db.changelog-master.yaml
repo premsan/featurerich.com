@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - includeAll:
+      path: com/featurerich/security/db/changelog
