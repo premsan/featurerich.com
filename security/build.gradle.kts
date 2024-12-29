@@ -14,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.bootJar {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":db"))
     implementation(project(":ui"))

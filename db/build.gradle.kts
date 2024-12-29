@@ -44,6 +44,10 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.bootJar {
+    enabled = false
+}
+
 spotless {
     format("html") {
         val htmlTabWidth: Int by rootProject.extra

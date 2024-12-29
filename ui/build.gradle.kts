@@ -14,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.bootJar {
+    enabled = false
+}
+
 dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
