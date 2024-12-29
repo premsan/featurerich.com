@@ -122,7 +122,8 @@ public class SecurityConfiguration {
     @Bean
     static MethodSecurityExpressionHandler expressionHandler(
             final PermissionEvaluators permissionEvaluators) {
-        var expressionHandler = new DefaultMethodSecurityExpressionHandler();
+        final DefaultMethodSecurityExpressionHandler expressionHandler =
+                new DefaultMethodSecurityExpressionHandler();
         expressionHandler.setPermissionEvaluator(permissionEvaluators);
         return expressionHandler;
     }
