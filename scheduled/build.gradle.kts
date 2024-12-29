@@ -20,6 +20,10 @@ tasks {
     }
 }
 
+tasks.bootJar {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":ui"))
     implementation(project(":db"))
