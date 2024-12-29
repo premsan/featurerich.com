@@ -1,6 +1,7 @@
 package com.featurerich.security;
 
 import com.featurerich.security.authority.AuthorityRepository;
+import com.featurerich.security.permissionevaluator.PermissionEvaluators;
 import com.featurerich.security.user.User;
 import com.featurerich.security.user.UserRepository;
 import java.util.Collection;
@@ -13,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -114,6 +117,14 @@ public class SecurityConfiguration {
     @Bean
     public NamedParameterJdbcOperations namedParameterJdbcOperations(final DataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Bean
+    static MethodSecurityExpressionHandler expressionHandler(
+            final PermissionEvaluators permissionEvaluators) {
+        var expressionHandler = new DefaultMethodSecurityExpressionHandler();
+        expressionHandler.setPermissionEvaluator(permissionEvaluators);
+        return expressionHandler;
     }
 
     static class DefaultUser extends DefaultOidcUser {
