@@ -45,7 +45,9 @@ public class PaymentAttemptCreateController {
     }
 
     @PostMapping("/payment/payment-attempt-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
+    @PreAuthorize(
+            "hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE') or"
+                    + " hasPermission(#paymentAttemptCreate, 'paymentAttemptCreate')")
     public ModelAndView postPaymentAttemptCreate(
             @Valid @ModelAttribute("paymentAttemptCreate")
                     final PaymentAttemptCreate paymentAttemptCreate,
@@ -128,7 +130,7 @@ public class PaymentAttemptCreateController {
 
     @Getter
     @Setter
-    private static class PaymentAttemptCreate {
+    public static class PaymentAttemptCreate {
 
         private String paymentId;
 
