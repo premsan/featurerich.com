@@ -4,13 +4,11 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class PermissionEvaluators implements PermissionEvaluator {
 
     private final Map<Class<?>, ObjectPermissionEvaluator<?>> objectPermissionEvaluators =
