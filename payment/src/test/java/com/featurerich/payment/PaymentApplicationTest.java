@@ -8,6 +8,6 @@ class PaymentApplicationTest {
     @Test
     void main() {
 
-        Assertions.assertTrue(true);
+        Assertions.assertTrue(false);
     }
 }
