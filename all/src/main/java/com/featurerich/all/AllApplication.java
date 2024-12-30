@@ -16,20 +16,18 @@ public class AllApplication {
         context = SpringApplication.run(AllApplication.class, args);
     }
 
-    public static void restart()
-    {
+    public static void restart() {
 
         final ApplicationArguments args = context.getBean(ApplicationArguments.class);
 
         final Thread thread =
-
                 new Thread(
-                () -> {
-
-                    context.close();
-                    context = SpringApplication.run(AllApplication.class, args.getSourceArgs());
-                }
-        );
+                        () -> {
+                            context.close();
+                            context =
+                                    SpringApplication.run(
+                                            AllApplication.class, args.getSourceArgs());
+                        });
 
         thread.setDaemon(false);
         thread.start();
