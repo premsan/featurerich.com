@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{com/featurerich/ui/templates/head-fragment}" />
+    <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
+    <body>
+        <section class="section">
+            <form th:action="@{/application/application-restart}" method="post">
+                <div class="control">
+                    <button type="submit" class="button is-primary">
+                        Restart Application
+                    </button>
+                </div>
+            </form>
+        </section>
+    </body>
+    <footer th:replace="~{com/featurerich/ui/templates/footer-fragment}" />
+</html>

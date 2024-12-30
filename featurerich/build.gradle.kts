@@ -22,6 +22,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
+    implementation(project(":application"))
     implementation(project(":barcode"))
     implementation(project(":blog"))
     implementation(project(":db"))
@@ -45,4 +46,19 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+spotless {
+    format("html") {
+        val htmlTabWidth: Int by rootProject.extra
+        prettier().config(mapOf("tabWidth" to htmlTabWidth))
+
+        target("src/**/templates/**/*.html")
+    }
+    java {
+        val googleJavaFormatVersion: String by rootProject.extra
+
+        googleJavaFormat(googleJavaFormatVersion).aosp().reflowLongStrings().skipJavadocFormatting()
+        formatAnnotations()
+    }
 }
