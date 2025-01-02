@@ -26,7 +26,7 @@ public class ReservationResourceCreateController {
 
     @FeatureMapping(module = "reservation")
     @GetMapping("/reservation/reservation-resource-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView getReservationResourceCreate() {
 
         final ModelAndView model =
@@ -38,7 +38,7 @@ public class ReservationResourceCreateController {
     }
 
     @PostMapping("/reservation/reservation-resource-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView postReservationResourceCreate(
             @Valid @ModelAttribute("reservationResourceCreate")
                     final ReservationResourceCreate reservationResourceCreate,

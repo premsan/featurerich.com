@@ -17,7 +17,7 @@ public class RoleViewController {
 
     @FeatureMapping(module = "security")
     @GetMapping("/security/role-view/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ModelAndView getRoleView(@PathVariable String id) {
 
         final Optional<Role> optionalRole = roleRepository.findById(id);

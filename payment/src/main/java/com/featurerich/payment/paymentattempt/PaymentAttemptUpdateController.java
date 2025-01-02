@@ -26,7 +26,7 @@ public class PaymentAttemptUpdateController {
 
     @FeatureMapping(module = "payment")
     @GetMapping("/payment/payment-attempt-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_UPDATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_UPDATE')")
     public ModelAndView getPaymentAttemptUpdate(
             @PathVariable String id,
             @RequestParam Map<String, String> requestParams,

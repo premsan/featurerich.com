@@ -33,7 +33,7 @@ public class PaymentAttemptCreateController {
 
     @FeatureMapping(module = "payment")
     @GetMapping("/payment/payment-attempt-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
     public ModelAndView getPaymentAttemptCreate() {
 
         final ModelAndView model =
@@ -48,7 +48,7 @@ public class PaymentAttemptCreateController {
 
     @PostMapping("/payment/payment-attempt-create")
     @PreAuthorize(
-            "hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE') or"
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE') or"
                     + " hasPermission(#paymentAttemptCreate, 'paymentAttemptCreate')")
     public ModelAndView postPaymentAttemptCreate(
             @Valid @ModelAttribute("paymentAttemptCreate")

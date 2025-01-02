@@ -17,7 +17,7 @@ public class PaymentViewController {
 
     @FeatureMapping(module = "payment")
     @GetMapping("/payment/payment-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_VIEW')")
     public ModelAndView getPaymentView(@PathVariable String id) {
 
         final Optional<Payment> optionalPayment = paymentRepository.findById(id);

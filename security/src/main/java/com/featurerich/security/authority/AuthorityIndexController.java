@@ -21,7 +21,7 @@ public class AuthorityIndexController {
 
     @FeatureMapping(module = "security")
     @GetMapping("/security/authority-index")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ModelAndView getAuthorityIndex(final RequestParams requestParams) {
 
         final ModelAndView modelAndView =

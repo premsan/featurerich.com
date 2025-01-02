@@ -14,7 +14,7 @@ public class UserIndexController {
     private final UserRepository userRepository;
 
     @FeatureMapping(module = "security")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/security/user-index")
     public ModelAndView getUserIndex() {
 

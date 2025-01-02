@@ -26,7 +26,7 @@ public class RoleCreateController {
     private final RoleRepository roleRepository;
 
     @FeatureMapping(module = "security")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/security/role-create")
     public ModelAndView getRoleCreate(final RoleCreate roleCreate) {
 
@@ -37,7 +37,7 @@ public class RoleCreateController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/security/role-create")
     public ModelAndView postRoleCreate(
             @Valid @ModelAttribute("roleCreate") RoleCreate roleCreate,

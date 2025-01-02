@@ -29,7 +29,7 @@ public class PaymentCreateController {
 
     @FeatureMapping(module = "payment")
     @GetMapping("/payment/payment-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
     public ModelAndView getPaymentCreate() {
 
         final ModelAndView model =
@@ -45,7 +45,7 @@ public class PaymentCreateController {
     }
 
     @PostMapping("/payment/payment-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
     public ModelAndView postPaymentCreate(
             @Valid @ModelAttribute("paymentCreate") final PaymentCreate paymentCreate,
             final BindingResult bindingResult,

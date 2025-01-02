@@ -26,7 +26,7 @@ public class BlogCreateController {
 
     @GetMapping("/blog/blog-create")
     @FeatureMapping(module = "blog")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView getBlogCreate() {
 
         ModelAndView model = new ModelAndView("com/featurerich/blog/templates/blog-create");
@@ -36,7 +36,7 @@ public class BlogCreateController {
     }
 
     @PostMapping("/blog/blog-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView postBlogCreate(
             @Valid @ModelAttribute("blogCreate") BlogCreate blogCreate,
             BindingResult bindingResult,

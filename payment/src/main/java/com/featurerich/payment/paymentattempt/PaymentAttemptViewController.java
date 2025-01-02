@@ -17,7 +17,7 @@ public class PaymentAttemptViewController {
 
     @FeatureMapping(module = "payment")
     @GetMapping("/payment/payment-attempt-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_VIEW')")
     public ModelAndView getPaymentAttemptView(@PathVariable String id) {
 
         final Optional<PaymentAttempt> optionalPaymentAttempt =

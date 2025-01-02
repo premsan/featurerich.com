@@ -26,7 +26,7 @@ public class BarcodeQRCodeViewController {
 
     @FeatureMapping(module = "barcode")
     @GetMapping("/barcode/qr-code-view")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BARCODE_QR_CODE_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BARCODE_QR_CODE_VIEW')")
     public ModelAndView barcodeQRCodeViewGet(final QRCodeViewGet qrCodeViewGet)
             throws WriterException, IOException {
 

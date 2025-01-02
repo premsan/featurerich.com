@@ -17,7 +17,7 @@ public class ReservationPlanViewController {
 
     @FeatureMapping(module = "reservation")
     @GetMapping("/reservation/reservation-plan-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_VIEW')")
     public ModelAndView getReservationPlanView(@PathVariable String id) {
 
         final Optional<ReservationPlan> optionalReservationPlan =

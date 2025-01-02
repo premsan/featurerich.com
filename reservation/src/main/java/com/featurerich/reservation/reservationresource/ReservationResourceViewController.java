@@ -17,7 +17,7 @@ public class ReservationResourceViewController {
 
     @FeatureMapping(module = "reservation")
     @GetMapping("/reservation/reservation-resource-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_VIEW')")
     public ModelAndView getReservationResourceView(@PathVariable String id) {
 
         final Optional<ReservationResource> optionalReservationResource =

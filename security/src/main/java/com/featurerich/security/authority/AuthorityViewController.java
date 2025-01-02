@@ -17,7 +17,7 @@ public class AuthorityViewController {
 
     @FeatureMapping(module = "security")
     @GetMapping("/security/authority-view/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ModelAndView getAuthorityView(@PathVariable String id) {
 
         final Optional<Authority> optionalAuthority = authorityRepository.findById(id);
