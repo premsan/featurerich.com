@@ -10,13 +10,17 @@
                     class="button is-link is-light"
                     th:each="entry : ${featureMap}"
                     th:href="'#' + ${entry.key}"
-                    th:text="${entry.key}"
+                    th:text="${#messages.msgOrNull(entry.key)?:entry.key}"
                     >link</a
                 >
             </div>
         </section>
         <section class="section content" th:each="entry : ${featureMap}">
-            <h2 class="title is-2" th:id="${entry.key}" th:text="${entry.key}">
+            <h2
+                class="title is-2"
+                th:id="${entry.key}"
+                th:text="${#messages.msgOrNull(entry.key)?:entry.key}"
+            >
                 entry.key
             </h2>
             <div class="box" th:each="feature : ${entry.value}">
@@ -24,20 +28,24 @@
                     <a
                         class="button is-link is-light"
                         th:href="${feature.path}"
-                        th:text="${feature.path}"
+                        th:text="${#messages.msgOrNull(feature.path)?:feature.path}"
                         >Id</a
                     >
                 </div>
 
                 <div class="block content">
-                    <p th:text="${feature.messageCode}">Subtitle 4</p>
+                    <p
+                        th:text="${#messages.msgOrNull(feature.messageCode)?:feature.messageCode}"
+                    >
+                        Subtitle 4
+                    </p>
                 </div>
 
                 <div class="block tags">
                     <span
                         class="tag"
                         th:each="tag : ${feature.preAuthorizeAuthorities}"
-                        th:text="${tag}"
+                        th:text="${#messages.msgOrNull(tag)?:tag}"
                         >One</span
                     >
                 </div>
