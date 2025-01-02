@@ -31,7 +31,7 @@ public class GrepHostFileController {
 
     private final Pattern variablePattern = Pattern.compile("\\[(.*?)]");
 
-    @FeatureMapping(module = "grep")
+    @FeatureMapping
     @GetMapping("/grep/grep-host-file")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
     public ModelAndView getGrepHostFile() {

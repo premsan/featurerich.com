@@ -25,7 +25,7 @@ public class AuthorityCreateController {
 
     private final AuthorityRepository authorityRepository;
 
-    @FeatureMapping(module = "security")
+    @FeatureMapping
     @GetMapping("/security/authority-create")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
     public ModelAndView getAuthorityCreate() {

@@ -15,7 +15,7 @@ public class PaymentViewController {
 
     private final PaymentRepository paymentRepository;
 
-    @FeatureMapping(module = "payment")
+    @FeatureMapping
     @GetMapping("/payment/payment-view/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_VIEW')")
     public ModelAndView getPaymentView(@PathVariable String id) {

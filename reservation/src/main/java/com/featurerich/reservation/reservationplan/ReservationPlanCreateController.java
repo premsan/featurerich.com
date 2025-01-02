@@ -33,9 +33,10 @@ public class ReservationPlanCreateController {
     private final ReservationResourceRepository reservationResourceRepository;
     private final ReservationPlanRepository reservationPlanRepository;
 
-    @FeatureMapping(module = "reservation")
+    @FeatureMapping
     @GetMapping("/reservation/reservation-plan-create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView getReservationPlanCreate() {
 
         final ModelAndView model =
@@ -46,7 +47,8 @@ public class ReservationPlanCreateController {
     }
 
     @PostMapping("/reservation/reservation-plan-create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView postReservationPlanCreate(
             @Valid @ModelAttribute("reservationPlanCreate")
                     final ReservationPlanCreate reservationPlanCreate,

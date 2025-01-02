@@ -27,7 +27,7 @@ public class PaymentCreateController {
 
     private final PaymentRepository paymentRepository;
 
-    @FeatureMapping(module = "payment")
+    @FeatureMapping
     @GetMapping("/payment/payment-create")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
     public ModelAndView getPaymentCreate() {

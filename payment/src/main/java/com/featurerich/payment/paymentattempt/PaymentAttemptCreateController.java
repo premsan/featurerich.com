@@ -31,7 +31,7 @@ public class PaymentAttemptCreateController {
     private final PaymentAttemptRepository paymentAttemptRepository;
     private final PaymentGatewayRepository paymentGatewayRepository;
 
-    @FeatureMapping(module = "payment")
+    @FeatureMapping
     @GetMapping("/payment/payment-attempt-create")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
     public ModelAndView getPaymentAttemptCreate() {

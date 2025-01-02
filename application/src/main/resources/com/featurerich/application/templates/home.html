@@ -29,12 +29,17 @@
                     >
                 </div>
 
-                <div class="block" th:text="${feature.messageCode}">
-                    feature.messageCode
+                <div class="block content">
+                    <p th:text="${feature.messageCode}">Subtitle 4</p>
                 </div>
 
-                <div class="block">
-                    <p th:text="${feature.preAuthorizeValue}">Name</p>
+                <div class="block tags">
+                    <span
+                        class="tag"
+                        th:each="tag : ${feature.preAuthorizeAuthorities}"
+                        th:text="${tag}"
+                        >One</span
+                    >
                 </div>
             </div>
         </section>

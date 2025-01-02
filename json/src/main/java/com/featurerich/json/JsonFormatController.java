@@ -23,7 +23,7 @@ public class JsonFormatController {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @FeatureMapping(module = "json")
+    @FeatureMapping
     @GetMapping("/json/json-format")
     public ModelAndView getJsonFormat() {
 

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ApplicationRestartController {
 
-    @FeatureMapping(module = "application")
+    @FeatureMapping
     @GetMapping("/application/application-restart")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
     public ModelAndView applicationRestartGet() {

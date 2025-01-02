@@ -17,7 +17,7 @@ public class BlogDeleteController {
 
     private final BlogRepository blogRepository;
 
-    @FeatureMapping(module = "blog")
+    @FeatureMapping
     @GetMapping("/blog/blog-delete/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_DELETE')")
     public ModelAndView getBlogDelete(final @PathVariable String id) {

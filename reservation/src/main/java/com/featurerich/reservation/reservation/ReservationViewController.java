@@ -15,7 +15,7 @@ public class ReservationViewController {
 
     private final ReservationRepository reservationRepository;
 
-    @FeatureMapping(module = "reservation")
+    @FeatureMapping
     @GetMapping("/reservation/reservation-view/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_VIEW')")
     public ModelAndView getReservationView(@PathVariable String id) {

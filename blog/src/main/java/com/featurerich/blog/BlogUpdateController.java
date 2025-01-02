@@ -26,7 +26,7 @@ public class BlogUpdateController {
 
     private final BlogRepository blogRepository;
 
-    @FeatureMapping(module = "blog")
+    @FeatureMapping
     @GetMapping("/blog/blog-update/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
     public ModelAndView getBlogUpdate(@PathVariable String id) {

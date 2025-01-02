@@ -1,5 +1,6 @@
 package com.featurerich.application;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +16,5 @@ public class Feature {
 
     private String messageCode;
 
-    private String preAuthorizeValue;
+    private List<String> preAuthorizeAuthorities;
 }

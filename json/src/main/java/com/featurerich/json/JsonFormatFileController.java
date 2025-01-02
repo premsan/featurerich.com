@@ -24,7 +24,7 @@ public class JsonFormatFileController {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @FeatureMapping(module = "json")
+    @FeatureMapping
     @GetMapping("/json/json-format-file")
     public ModelAndView getJsonFormatFile() {
 

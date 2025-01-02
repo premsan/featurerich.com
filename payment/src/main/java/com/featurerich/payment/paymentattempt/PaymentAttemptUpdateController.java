@@ -24,7 +24,7 @@ public class PaymentAttemptUpdateController {
     private final PaymentAttemptRepository paymentAttemptRepository;
     private final PaymentGatewayRepository paymentGatewayRepository;
 
-    @FeatureMapping(module = "payment")
+    @FeatureMapping
     @GetMapping("/payment/payment-attempt-update/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_UPDATE')")
     public ModelAndView getPaymentAttemptUpdate(

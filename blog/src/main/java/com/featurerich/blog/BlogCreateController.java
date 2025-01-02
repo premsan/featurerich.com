@@ -25,7 +25,7 @@ public class BlogCreateController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-create")
-    @FeatureMapping(module = "blog")
+    @FeatureMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView getBlogCreate() {
 

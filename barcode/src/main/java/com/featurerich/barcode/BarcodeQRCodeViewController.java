@@ -24,7 +24,7 @@ public class BarcodeQRCodeViewController {
 
     private static final String PNG_FORMAT_NAME = "PNG";
 
-    @FeatureMapping(module = "barcode")
+    @FeatureMapping
     @GetMapping("/barcode/qr-code-view")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BARCODE_QR_CODE_VIEW')")
     public ModelAndView barcodeQRCodeViewGet(final QRCodeViewGet qrCodeViewGet)

@@ -9,7 +9,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FeatureMapping {
 
-    String module();
-
     int priority() default Integer.MAX_VALUE;
 }

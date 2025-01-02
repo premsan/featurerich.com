@@ -32,7 +32,7 @@ public class ReservationCreateController {
     private final ReservationRepository reservationRepository;
     private final ReservationPlanRepository reservationPlanRepository;
 
-    @FeatureMapping(module = "reservation")
+    @FeatureMapping
     @GetMapping("/reservation/reservation-create")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_CREATE')")
     public ModelAndView getReservationCreate() {

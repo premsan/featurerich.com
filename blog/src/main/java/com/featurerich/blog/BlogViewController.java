@@ -17,7 +17,7 @@ public class BlogViewController {
 
     private final BlogRepository blogRepository;
 
-    @FeatureMapping(module = "blog")
+    @FeatureMapping
     @GetMapping("/blog/blog-view/{id}")
     public ModelAndView getBlogView(final @PathVariable String id) {
 
