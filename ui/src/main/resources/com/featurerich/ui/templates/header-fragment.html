@@ -10,11 +10,11 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link"> Links </a>
+                    <a class="navbar-link"> Bookmarks </a>
                     <div class="navbar-dropdown">
                         <a
                             class="navbar-item"
-                            th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
+                            th:each="link : ${null}"
                             th:text="${link}"
                             th:href="${link}"
                         >
