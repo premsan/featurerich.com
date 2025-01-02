@@ -1,5 +1,6 @@
 package com.featurerich.blog;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ public class BlogDeleteController {
 
     private final BlogRepository blogRepository;
 
+    @FeatureMapping(module = "blog")
     @GetMapping("/blog/blog-delete/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_DELETE')")
     public ModelAndView getBlogDelete(final @PathVariable String id) {

@@ -25,6 +25,7 @@ tasks.bootJar {
 }
 
 dependencies {
+    implementation(project(":application"))
     implementation(project(":ui"))
     implementation(project(":db"))
 

@@ -22,9 +22,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
-    implementation(project(":security"))
-    implementation(project(":ui"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    api("org.springframework.boot:spring-boot-starter-security")
 
     testImplementation(platform(libs.org.junit.junit.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")

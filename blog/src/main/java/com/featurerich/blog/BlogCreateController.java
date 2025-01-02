@@ -1,5 +1,6 @@
 package com.featurerich.blog;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -24,6 +25,7 @@ public class BlogCreateController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-create")
+    @FeatureMapping(module = "blog")
     @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView getBlogCreate() {
 

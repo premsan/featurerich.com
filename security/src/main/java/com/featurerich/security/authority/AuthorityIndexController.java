@@ -1,5 +1,6 @@
 package com.featurerich.security.authority;
 
+import com.featurerich.application.FeatureMapping;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class AuthorityIndexController {
 
     private final AuthorityRepository authorityRepository;
 
+    @FeatureMapping(module = "security")
     @GetMapping("/security/authority-index")
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAuthorityIndex(final RequestParams requestParams) {

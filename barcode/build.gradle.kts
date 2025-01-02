@@ -15,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":application"))
     implementation(project(":security"))
     implementation(project(":ui"))
     runtimeOnly("com.h2database:h2")

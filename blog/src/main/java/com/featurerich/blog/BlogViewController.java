@@ -1,5 +1,6 @@
 package com.featurerich.blog;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.asciidoctor.Options;
@@ -16,6 +17,7 @@ public class BlogViewController {
 
     private final BlogRepository blogRepository;
 
+    @FeatureMapping(module = "blog")
     @GetMapping("/blog/blog-view/{id}")
     public ModelAndView getBlogView(final @PathVariable String id) {
 

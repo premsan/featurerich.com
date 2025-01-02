@@ -13,6 +13,8 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.EventListener;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class FeatureController {
+public class HomePageController {
 
     private final ApplicationContext applicationContext;
     private final Map<String, List<Feature>> featureMap = new HashMap<>();
@@ -39,7 +41,9 @@ public class FeatureController {
                 final FeatureMapping featureMapping = method.getAnnotation(FeatureMapping.class);
                 final GetMapping featureGetMapping = method.getAnnotation(GetMapping.class);
 
-                if (featureMapping == null || featureGetMapping == null) {
+                if (featureMapping == null
+                        || featureGetMapping == null
+                        || featureGetMapping.value().length == 0) {
 
                     continue;
                 }
@@ -50,7 +54,8 @@ public class FeatureController {
                 feature.setModule(featureMapping.module());
                 feature.setPath(featureGetMapping.value()[0]);
                 feature.setPriority(featureMapping.priority());
-                feature.setMessageCode(controllerClass.getSimpleName().concat(".").concat(method.getName()));
+                feature.setMessageCode(
+                        controllerClass.getSimpleName().concat(".").concat(method.getName()));
 
                 if (Objects.nonNull(preAuthorize)) {
                     feature.setPreAuthorizeValue(preAuthorize.value());
@@ -72,11 +77,12 @@ public class FeatureController {
         }
     }
 
-    @GetMapping("/application/application-feature-view")
-    public ModelAndView applicationFeatureViewGet() {
+    @GetMapping("/")
+    public ModelAndView home() {
 
+        ExpressionParser expressionParser = new SpelExpressionParser();
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/application/templates/application-restart");
+                new ModelAndView("com/featurerich/application/templates/home");
         modelAndView.addObject("featureMap", featureMap);
 
         return modelAndView;

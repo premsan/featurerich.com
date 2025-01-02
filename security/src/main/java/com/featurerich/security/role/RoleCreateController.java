@@ -1,5 +1,6 @@
 package com.featurerich.security.role;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -24,6 +25,7 @@ public class RoleCreateController {
 
     private final RoleRepository roleRepository;
 
+    @FeatureMapping(module = "security")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/security/role-create")
     public ModelAndView getRoleCreate(final RoleCreate roleCreate) {

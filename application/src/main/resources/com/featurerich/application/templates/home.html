@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{com/featurerich/ui/templates/head-fragment}"></head>
+    <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
+    <body>
+        <section class="section content">
+            <h2 class="title is-2">Modules</h2>
+            <div class="buttons">
+                <a
+                    class="button is-link is-light"
+                    th:each="entry : ${featureMap}"
+                    th:href="'#' + ${entry.key}"
+                    th:text="${entry.key}"
+                    >link</a
+                >
+            </div>
+        </section>
+        <section class="section content" th:each="entry : ${featureMap}">
+            <h2 class="title is-2" th:id="${entry.key}" th:text="${entry.key}">
+                entry.key
+            </h2>
+            <div class="box" th:each="feature : ${entry.value}">
+                <div class="block">
+                    <a
+                        class="button is-link is-light"
+                        th:href="${feature.path}"
+                        th:text="${feature.path}"
+                        >Id</a
+                    >
+                </div>
+
+                <div class="block" th:text="${feature.messageCode}">
+                    feature.messageCode
+                </div>
+
+                <div class="block">
+                    <p th:text="${feature.preAuthorizeValue}">Name</p>
+                </div>
+            </div>
+        </section>
+    </body>
+    <footer th:replace="~{com/featurerich/ui/templates/footer-fragment}" />
+</html>
