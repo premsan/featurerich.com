@@ -1,5 +1,6 @@
 package com.featurerich.security.authority;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +15,9 @@ public class AuthorityViewController {
 
     private final AuthorityRepository authorityRepository;
 
+    @FeatureMapping
     @GetMapping("/security/authority-view/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ModelAndView getAuthorityView(@PathVariable String id) {
 
         final Optional<Authority> optionalAuthority = authorityRepository.findById(id);

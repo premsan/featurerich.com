@@ -1,5 +1,6 @@
 package com.featurerich.security.userrole;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +15,8 @@ public class UserRoleViewController {
 
     private final UserRoleRepository userRoleRepository;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @FeatureMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/security/user-role-view/{id}")
     public ModelAndView getUserRoleView(@PathVariable final String id) {
 

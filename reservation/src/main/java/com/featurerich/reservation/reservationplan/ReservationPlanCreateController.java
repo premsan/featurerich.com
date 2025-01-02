@@ -1,5 +1,6 @@
 package com.featurerich.reservation.reservationplan;
 
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.reservation.reservationresource.ReservationResource;
 import com.featurerich.reservation.reservationresource.ReservationResourceRepository;
 import jakarta.validation.Valid;
@@ -32,8 +33,10 @@ public class ReservationPlanCreateController {
     private final ReservationResourceRepository reservationResourceRepository;
     private final ReservationPlanRepository reservationPlanRepository;
 
+    @FeatureMapping
     @GetMapping("/reservation/reservation-plan-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView getReservationPlanCreate() {
 
         final ModelAndView model =
@@ -44,7 +47,8 @@ public class ReservationPlanCreateController {
     }
 
     @PostMapping("/reservation/reservation-plan-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_PLAN_CREATE')")
     public ModelAndView postReservationPlanCreate(
             @Valid @ModelAttribute("reservationPlanCreate")
                     final ReservationPlanCreate reservationPlanCreate,

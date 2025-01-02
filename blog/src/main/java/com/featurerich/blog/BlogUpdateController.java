@@ -1,5 +1,6 @@
 package com.featurerich.blog;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,9 @@ public class BlogUpdateController {
 
     private final BlogRepository blogRepository;
 
+    @FeatureMapping
     @GetMapping("/blog/blog-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
     public ModelAndView getBlogUpdate(@PathVariable String id) {
 
         final Optional<Blog> optionalBlog = blogRepository.findById(id);
@@ -50,7 +52,7 @@ public class BlogUpdateController {
     }
 
     @PostMapping("/blog/blog-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_UPDATE')")
     public ModelAndView postBlogUpdate(
             @PathVariable String id,
             @Valid @ModelAttribute("blogUpdate") BlogUpdate blogUpdate,

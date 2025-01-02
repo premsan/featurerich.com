@@ -1,5 +1,6 @@
 package com.featurerich.reservation.reservationresource;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -23,8 +24,10 @@ public class ReservationResourceCreateController {
 
     private final ReservationResourceRepository reservationResourceRepository;
 
+    @FeatureMapping
     @GetMapping("/reservation/reservation-resource-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView getReservationResourceCreate() {
 
         final ModelAndView model =
@@ -36,7 +39,8 @@ public class ReservationResourceCreateController {
     }
 
     @PostMapping("/reservation/reservation-resource-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_CREATE')")
     public ModelAndView postReservationResourceCreate(
             @Valid @ModelAttribute("reservationResourceCreate")
                     final ReservationResourceCreate reservationResourceCreate,

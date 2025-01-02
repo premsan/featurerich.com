@@ -2,6 +2,7 @@ package com.featurerich.json;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class JsonFormatFileController {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    @FeatureMapping
     @GetMapping("/json/json-format-file")
     public ModelAndView getJsonFormatFile() {
 

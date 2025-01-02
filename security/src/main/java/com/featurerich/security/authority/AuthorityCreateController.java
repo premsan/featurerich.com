@@ -1,5 +1,6 @@
 package com.featurerich.security.authority;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -24,8 +25,9 @@ public class AuthorityCreateController {
 
     private final AuthorityRepository authorityRepository;
 
+    @FeatureMapping
     @GetMapping("/security/authority-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
     public ModelAndView getAuthorityCreate() {
 
         final ModelAndView modelAndView =
@@ -36,7 +38,7 @@ public class AuthorityCreateController {
     }
 
     @PostMapping("/security/authority-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('SECURITY_AUTHORITY_CREATE')")
     public ModelAndView postAuthorityCreate(
             @Valid @ModelAttribute("authorityCreate") AuthorityCreate authorityCreate,
             BindingResult bindingResult,

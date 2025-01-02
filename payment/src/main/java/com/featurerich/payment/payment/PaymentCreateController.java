@@ -1,5 +1,6 @@
 package com.featurerich.payment.payment;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,8 +27,9 @@ public class PaymentCreateController {
 
     private final PaymentRepository paymentRepository;
 
+    @FeatureMapping
     @GetMapping("/payment/payment-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
     public ModelAndView getPaymentCreate() {
 
         final ModelAndView model =
@@ -43,7 +45,7 @@ public class PaymentCreateController {
     }
 
     @PostMapping("/payment/payment-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_CREATE')")
     public ModelAndView postPaymentCreate(
             @Valid @ModelAttribute("paymentCreate") final PaymentCreate paymentCreate,
             final BindingResult bindingResult,

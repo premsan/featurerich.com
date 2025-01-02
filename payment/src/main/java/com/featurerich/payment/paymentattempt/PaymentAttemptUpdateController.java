@@ -1,5 +1,6 @@
 package com.featurerich.payment.paymentattempt;
 
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.payment.paymentgateway.PaymentAttemptStatusFetch;
 import com.featurerich.payment.paymentgateway.PaymentAttemptStatusFetched;
 import com.featurerich.payment.paymentgateway.PaymentGateway;
@@ -23,8 +24,9 @@ public class PaymentAttemptUpdateController {
     private final PaymentAttemptRepository paymentAttemptRepository;
     private final PaymentGatewayRepository paymentGatewayRepository;
 
+    @FeatureMapping
     @GetMapping("/payment/payment-attempt-update/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_UPDATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_UPDATE')")
     public ModelAndView getPaymentAttemptUpdate(
             @PathVariable String id,
             @RequestParam Map<String, String> requestParams,

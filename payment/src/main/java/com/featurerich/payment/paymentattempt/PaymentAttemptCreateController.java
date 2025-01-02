@@ -1,5 +1,6 @@
 package com.featurerich.payment.paymentattempt;
 
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.payment.payment.Payment;
 import com.featurerich.payment.payment.PaymentRepository;
 import com.featurerich.payment.paymentgateway.PaymentAttemptCreated;
@@ -30,8 +31,9 @@ public class PaymentAttemptCreateController {
     private final PaymentAttemptRepository paymentAttemptRepository;
     private final PaymentGatewayRepository paymentGatewayRepository;
 
+    @FeatureMapping
     @GetMapping("/payment/payment-attempt-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE')")
     public ModelAndView getPaymentAttemptCreate() {
 
         final ModelAndView model =
@@ -46,7 +48,7 @@ public class PaymentAttemptCreateController {
 
     @PostMapping("/payment/payment-attempt-create")
     @PreAuthorize(
-            "hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE') or"
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_ATTEMPT_CREATE') or"
                     + " hasPermission(#paymentAttemptCreate, 'paymentAttemptCreate')")
     public ModelAndView postPaymentAttemptCreate(
             @Valid @ModelAttribute("paymentAttemptCreate")

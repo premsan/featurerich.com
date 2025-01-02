@@ -1,5 +1,6 @@
 package com.featurerich.payment.payment;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +15,9 @@ public class PaymentViewController {
 
     private final PaymentRepository paymentRepository;
 
+    @FeatureMapping
     @GetMapping("/payment/payment-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PAYMENT_PAYMENT_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('PAYMENT_PAYMENT_VIEW')")
     public ModelAndView getPaymentView(@PathVariable String id) {
 
         final Optional<Payment> optionalPayment = paymentRepository.findById(id);

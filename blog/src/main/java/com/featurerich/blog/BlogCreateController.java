@@ -1,5 +1,6 @@
 package com.featurerich.blog;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -24,7 +25,8 @@ public class BlogCreateController {
     private final BlogRepository blogRepository;
 
     @GetMapping("/blog/blog-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
+    @FeatureMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView getBlogCreate() {
 
         ModelAndView model = new ModelAndView("com/featurerich/blog/templates/blog-create");
@@ -34,7 +36,7 @@ public class BlogCreateController {
     }
 
     @PostMapping("/blog/blog-create")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BLOG_BLOG_CREATE')")
     public ModelAndView postBlogCreate(
             @Valid @ModelAttribute("blogCreate") BlogCreate blogCreate,
             BindingResult bindingResult,

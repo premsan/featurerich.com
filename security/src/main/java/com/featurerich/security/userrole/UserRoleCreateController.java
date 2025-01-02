@@ -1,5 +1,6 @@
 package com.featurerich.security.userrole;
 
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.security.role.Role;
 import com.featurerich.security.role.RoleRepository;
 import com.featurerich.security.user.User;
@@ -32,7 +33,8 @@ public class UserRoleCreateController {
 
     private final UserRoleRepository userRoleRepository;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @FeatureMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/security/user-role-create")
     public ModelAndView getUserRoleCreate(final UserRoleCreate userRoleCreate) {
 
@@ -43,7 +45,7 @@ public class UserRoleCreateController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/security/user-role-create")
     public ModelAndView postUserRoleCreate(
             @Valid @ModelAttribute("userRoleCreate") UserRoleCreate userRoleCreate,

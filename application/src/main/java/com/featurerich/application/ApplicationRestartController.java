@@ -9,15 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ApplicationRestartController {
 
+    @FeatureMapping
     @GetMapping("/application/application-restart")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
     public ModelAndView applicationRestartGet() {
 
         return new ModelAndView("com/featurerich/application/templates/application-restart");
     }
 
     @PostMapping("/application/application-restart")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
     public ModelAndView applicationRestartPost() {
 
         BaseApplication.restartApplication();

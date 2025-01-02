@@ -1,5 +1,6 @@
 package com.featurerich.barcode;
 
+import com.featurerich.application.FeatureMapping;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -23,8 +24,9 @@ public class BarcodeQRCodeViewController {
 
     private static final String PNG_FORMAT_NAME = "PNG";
 
+    @FeatureMapping
     @GetMapping("/barcode/qr-code-view")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('BARCODE_QR_CODE_VIEW')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BARCODE_QR_CODE_VIEW')")
     public ModelAndView barcodeQRCodeViewGet(final QRCodeViewGet qrCodeViewGet)
             throws WriterException, IOException {
 

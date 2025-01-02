@@ -1,5 +1,6 @@
 package com.featurerich.grep;
 
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.io.BufferedReader;
@@ -30,8 +31,9 @@ public class GrepHostFileController {
 
     private final Pattern variablePattern = Pattern.compile("\\[(.*?)]");
 
+    @FeatureMapping
     @GetMapping("/grep/grep-host-file")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
     public ModelAndView getGrepHostFile() {
 
         ModelAndView model = new ModelAndView("com/featurerich/grep/templates/grep-host-file");
@@ -41,7 +43,7 @@ public class GrepHostFileController {
     }
 
     @PostMapping("/grep/grep-host-file")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('GREP_GREP_HOST_FILE')")
     public ModelAndView postGrepHostFile(
             @Valid @ModelAttribute("grepHostFile") GrepHostFile grepHostFile,
             BindingResult bindingResult) {

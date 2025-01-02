@@ -1,5 +1,6 @@
 package com.featurerich.reservation.reservationresource;
 
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +15,10 @@ public class ReservationResourceViewController {
 
     private final ReservationResourceRepository reservationResourceRepository;
 
+    @FeatureMapping
     @GetMapping("/reservation/reservation-resource-view/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_VIEW')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('RESERVATION_RESERVATION_RESOURCE_VIEW')")
     public ModelAndView getReservationResourceView(@PathVariable String id) {
 
         final Optional<ReservationResource> optionalReservationResource =

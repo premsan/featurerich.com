@@ -1,5 +1,6 @@
 package com.featurerich.security.roleauthority;
 
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.security.authority.Authority;
 import com.featurerich.security.authority.AuthorityRepository;
 import com.featurerich.security.role.Role;
@@ -32,7 +33,8 @@ public class RoleAuthorityCreateController {
 
     private final RoleAuthorityRepository roleAuthorityRepository;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @FeatureMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/security/role-authority-create")
     public ModelAndView getRoleAuthorityCreate(final RoleAuthorityCreate roleAuthorityCreate) {
 
@@ -43,7 +45,7 @@ public class RoleAuthorityCreateController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/security/role-authority-create")
     public ModelAndView postRoleAuthorityCreate(
             @Valid @ModelAttribute("roleAuthorityCreate") RoleAuthorityCreate roleAuthorityCreate,
