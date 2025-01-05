@@ -11,7 +11,7 @@
             >
                 <div
                     class="field"
-                    th:each="property : ${moduleConfigurationUpdate.properties.entrySet()}"
+                    th:each="property : ${moduleConfigurationUpdate.getProperties().entrySet()}"
                 >
                     <label class="label" th:text="${property.key}">key</label>
                     <div class="control">

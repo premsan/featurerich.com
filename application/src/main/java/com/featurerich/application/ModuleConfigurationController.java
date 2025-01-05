@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.core.env.Environment;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class ModuleConfigurationController {
             "{0}/.featurerich/{1}/config/{1}-{2}.properties";
 
     @GetMapping("/application/module-configuration-update/{moduleId}")
+    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationGet(@PathVariable String moduleId) throws IOException {
 
         final ModelAndView modelAndView =
@@ -78,6 +80,7 @@ public class ModuleConfigurationController {
     }
 
     @PostMapping("/application/module-configuration-update/{moduleId}")
+    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationPost(
             @PathVariable String moduleId,
             @Valid @ModelAttribute("moduleConfigurationUpdate")

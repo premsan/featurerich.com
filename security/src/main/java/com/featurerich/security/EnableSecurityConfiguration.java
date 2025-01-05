@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
-@Profile("!local")
+@Profile("!demo")
 @EnableWebSecurity
 @EnableMethodSecurity
 public class EnableSecurityConfiguration {}
