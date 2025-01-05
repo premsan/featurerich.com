@@ -1,6 +1,6 @@
 package com.featurerich.reservation.reservation;
 
-import com.featurerich.application.FeatureMapping;
+import com.featurerich.base.FeatureMapping;
 import com.featurerich.reservation.reservationplan.ReservationPlan;
 import com.featurerich.reservation.reservationplan.ReservationPlanRepository;
 import jakarta.validation.Valid;

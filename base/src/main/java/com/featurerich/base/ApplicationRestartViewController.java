@@ -1,4 +1,4 @@
-package com.featurerich.application;
+package com.featurerich.base;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ApplicationRestartController {
+public class ApplicationRestartViewController {
 
     @FeatureMapping
-    @GetMapping("/application/application-restart")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @GetMapping("/base/application-restart-view")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BASE_APPLICATION_RESTART')")
     public ModelAndView applicationRestartGet() {
 
-        return new ModelAndView("com/featurerich/application/templates/application-restart");
+        return new ModelAndView("com/featurerich/base/templates/application-restart-view");
     }
 
-    @PostMapping("/application/application-restart")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @PostMapping("/base/application-restart-view")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('BASE_APPLICATION_RESTART')")
     public ModelAndView applicationRestartPost() {
 
         BaseApplication.restartApplication();

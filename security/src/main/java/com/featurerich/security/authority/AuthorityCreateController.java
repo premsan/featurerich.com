@@ -1,6 +1,6 @@
 package com.featurerich.security.authority;
 
-import com.featurerich.application.FeatureMapping;
+import com.featurerich.base.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;

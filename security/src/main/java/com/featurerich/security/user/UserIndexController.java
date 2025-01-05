@@ -1,6 +1,6 @@
 package com.featurerich.security.user;
 
-import com.featurerich.application.FeatureMapping;
+import com.featurerich.base.FeatureMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

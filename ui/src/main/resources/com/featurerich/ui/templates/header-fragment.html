@@ -8,20 +8,13 @@
         </div>
 
         <div class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link"> Links </a>
-                    <div class="navbar-dropdown">
-                        <a
-                            class="navbar-item"
-                            th:each="link : ${@UIConfigurationProperties.getAllLinks()}"
-                            th:text="${link}"
-                            th:href="${link}"
-                        >
-                            link
-                        </a>
-                    </div>
-                </div>
+            <div class="navbar-end">
+                <a
+                    class="navbar-item"
+                    href="/base/application-configuration-view"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                </a>
             </div>
         </div>
     </nav>
