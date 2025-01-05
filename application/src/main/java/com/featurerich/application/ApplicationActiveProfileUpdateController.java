@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Properties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,12 @@ public class ApplicationActiveProfileUpdateController {
                 new ModelAndView(
                         "com/featurerich/application/templates/application-active-profile-update");
 
+        final ApplicationActiveProfileUpdate applicationActiveProfileUpdate =
+                new ApplicationActiveProfileUpdate();
+        applicationActiveProfileUpdate.setActiveProfile(environment.getActiveProfiles()[0]);
+
+        modelAndView.addObject("profiles", Arrays.asList("demo", "live"));
+        modelAndView.addObject("applicationActiveProfileUpdate", applicationActiveProfileUpdate);
         return modelAndView;
     }
 
