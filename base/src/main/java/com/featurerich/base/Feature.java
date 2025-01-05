@@ -1,4 +1,4 @@
-package com.featurerich.application;
+package com.featurerich.base;
 
 import java.util.List;
 import lombok.Getter;

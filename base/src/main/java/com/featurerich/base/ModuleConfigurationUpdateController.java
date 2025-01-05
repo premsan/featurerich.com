@@ -1,4 +1,4 @@
-package com.featurerich.application;
+package com.featurerich.base;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,14 +36,13 @@ public class ModuleConfigurationUpdateController {
     private String profileConfigurationPathFormat =
             "{0}/.featurerich/{1}/config/{1}-{2}.properties";
 
-    @GetMapping("/application/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
+    @GetMapping("/base/module-configuration-update/{moduleId}")
+    @PreAuthorize("hasAuthority('BASE_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationUpdateGet(@PathVariable String moduleId)
             throws IOException {
 
         final ModelAndView modelAndView =
-                new ModelAndView(
-                        "com/featurerich/application/templates/module-configuration-update");
+                new ModelAndView("com/featurerich/base/templates/module-configuration-update");
         modelAndView.addObject("moduleId", moduleId);
 
         final Map<String, String> properties = new HashMap<>();
@@ -80,19 +78,17 @@ public class ModuleConfigurationUpdateController {
         return modelAndView;
     }
 
-    @PostMapping("/application/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
+    @PostMapping("/base/module-configuration-update/{moduleId}")
+    @PreAuthorize("hasAuthority('BASE_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationUpdatePost(
             @PathVariable String moduleId,
             @Valid @ModelAttribute("moduleConfigurationUpdate")
                     ModuleConfigurationUpdate moduleConfigurationUpdate,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes)
+            BindingResult bindingResult)
             throws IOException {
 
         final ModelAndView modelAndView =
-                new ModelAndView(
-                        "com/featurerich/application/templates/module-configuration-update");
+                new ModelAndView("com/featurerich/base/templates/module-configuration-update");
 
         if (bindingResult.hasErrors()) {
 
@@ -125,8 +121,7 @@ public class ModuleConfigurationUpdateController {
             properties.store(fileOutputStream, null);
         }
 
-        redirectAttributes.addAttribute("moduleId", moduleId);
-        return new ModelAndView("redirect:/application/module-configuration-update/{moduleId}");
+        return new ModelAndView("redirect:/base/application-restart-view");
     }
 
     @Getter
