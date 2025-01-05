@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class ConfigurationController {
+public class ModuleConfigurationController {
 
     private final Environment environment;
 
