@@ -4,10 +4,13 @@
     <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
     <body>
         <section class="section">
-            <form th:action="@{/application/application-restart}" method="post">
+            <form
+                th:action="@{/application/application-restart-view}"
+                method="post"
+            >
                 <div class="control">
                     <button type="submit" class="button is-primary">
-                        Restart Application
+                        Submit Application Restart
                     </button>
                 </div>
             </form>

@@ -22,12 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class HomePageController {
+public class ApplicationHomeController {
 
     private final Pattern authorityPattern = Pattern.compile("hasAuthority\\('(.*?)'\\)");
 
     private final ApplicationContext applicationContext;
-    private final Map<String, List<Feature>> featureMap = new HashMap<>();
+    private final Map<String, List<Feature>> moduleFeatures = new HashMap<>();
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReadyEvent() {
@@ -73,17 +73,17 @@ public class HomePageController {
                     feature.setPreAuthorizeAuthorities(authorities);
                 }
 
-                List<Feature> moduleFeatures = featureMap.get(module);
+                List<Feature> moduleFeatures = this.moduleFeatures.get(module);
                 if (moduleFeatures == null) {
 
                     moduleFeatures = new ArrayList<>();
-                    featureMap.put(feature.getModule(), moduleFeatures);
+                    this.moduleFeatures.put(feature.getModule(), moduleFeatures);
                 }
                 moduleFeatures.add(feature);
             }
         }
 
-        for (final List<Feature> moduleFeatures : featureMap.values()) {
+        for (final List<Feature> moduleFeatures : moduleFeatures.values()) {
 
             Collections.sort(moduleFeatures, Comparator.comparing(Feature::getPriority));
         }
@@ -93,8 +93,8 @@ public class HomePageController {
     public ModelAndView homeGet() {
 
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/application/templates/home");
-        modelAndView.addObject("featureMap", featureMap);
+                new ModelAndView("com/featurerich/application/templates/application-home");
+        modelAndView.addObject("moduleFeatures", moduleFeatures);
 
         return modelAndView;
     }

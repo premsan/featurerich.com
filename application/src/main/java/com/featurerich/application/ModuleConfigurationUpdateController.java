@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
-public class ModuleConfigurationController {
+public class ModuleConfigurationUpdateController {
 
     private final Environment environment;
 
@@ -39,7 +39,8 @@ public class ModuleConfigurationController {
 
     @GetMapping("/application/module-configuration-update/{moduleId}")
     @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
-    public ModelAndView moduleConfigurationGet(@PathVariable String moduleId) throws IOException {
+    public ModelAndView moduleConfigurationUpdateGet(@PathVariable String moduleId)
+            throws IOException {
 
         final ModelAndView modelAndView =
                 new ModelAndView(
@@ -81,7 +82,7 @@ public class ModuleConfigurationController {
 
     @PostMapping("/application/module-configuration-update/{moduleId}")
     @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
-    public ModelAndView moduleConfigurationPost(
+    public ModelAndView moduleConfigurationUpdatePost(
             @PathVariable String moduleId,
             @Valid @ModelAttribute("moduleConfigurationUpdate")
                     ModuleConfigurationUpdate moduleConfigurationUpdate,

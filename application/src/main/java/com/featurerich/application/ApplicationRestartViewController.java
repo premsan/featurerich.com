@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ApplicationRestartController {
+public class ApplicationRestartViewController {
 
     @FeatureMapping
-    @GetMapping("/application/application-restart")
+    @GetMapping("/application/application-restart-view")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
     public ModelAndView applicationRestartGet() {
 
-        return new ModelAndView("com/featurerich/application/templates/application-restart");
+        return new ModelAndView("com/featurerich/application/templates/application-restart-view");
     }
 
-    @PostMapping("/application/application-restart")
+    @PostMapping("/application/application-restart-view")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
     public ModelAndView applicationRestartPost() {
 
