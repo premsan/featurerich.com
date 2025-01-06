@@ -11,14 +11,16 @@ public class ApplicationRestartViewController {
 
     @FeatureMapping
     @GetMapping("/application/application-restart-view")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART_VIEW')")
     public ModelAndView applicationRestartGet() {
 
         return new ModelAndView("com/featurerich/application/templates/application-restart-view");
     }
 
     @PostMapping("/application/application-restart-view")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_APPLICATION_RESTART_VIEW')")
     public ModelAndView applicationRestartPost() {
 
         BaseApplication.restartApplication();
