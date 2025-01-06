@@ -32,7 +32,9 @@ public class ApplicationActiveProfileUpdateController {
             "{0}/.featurerich/application/config/application.properties";
 
     @GetMapping("/application/application-active-profile-update")
-    @PreAuthorize("hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or"
+                    + " hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
     public ModelAndView applicationActiveProfileUpdateGet() throws IOException {
 
         final ModelAndView modelAndView =
@@ -49,7 +51,9 @@ public class ApplicationActiveProfileUpdateController {
     }
 
     @PostMapping("/application/application-active-profile-update")
-    @PreAuthorize("hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or"
+                    + " hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
     public ModelAndView applicationActiveProfileUpdatePost(
             @Valid @ModelAttribute("applicationActiveProfileUpdate")
                     ApplicationActiveProfileUpdate applicationActiveProfileUpdate,

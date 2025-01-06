@@ -37,7 +37,8 @@ public class ModuleConfigurationUpdateController {
             "{0}/.featurerich/{1}/config/{1}-{2}.properties";
 
     @GetMapping("/application/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationUpdateGet(@PathVariable String moduleId)
             throws IOException {
 
@@ -63,7 +64,9 @@ public class ModuleConfigurationUpdateController {
 
             for (final String key : loadedProperties.stringPropertyNames()) {
 
-                properties.put(key, environment.getProperty(key));
+                if (key.startsWith("com.featurerich")) {
+                    properties.put(key, environment.getProperty(key));
+                }
             }
         }
 
@@ -80,7 +83,8 @@ public class ModuleConfigurationUpdateController {
     }
 
     @PostMapping("/application/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or hasAuthority('APPLICATION_MODULE_CONFIGURATION_UPDATE')")
     public ModelAndView moduleConfigurationUpdatePost(
             @PathVariable String moduleId,
             @Valid @ModelAttribute("moduleConfigurationUpdate")
