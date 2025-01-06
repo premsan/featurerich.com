@@ -25,9 +25,13 @@ repositories {
 
 dependencies {
     implementation(project(":application"))
+    implementation(project(":db"))
+    implementation(project(":security"))
     implementation(project(":ui"))
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    runtimeOnly("com.h2database:h2")
 
     compileOnly("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-validation")
