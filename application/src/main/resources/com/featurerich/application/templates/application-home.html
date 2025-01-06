@@ -7,7 +7,7 @@
             <h2 class="title is-2">Modules</h2>
             <div class="buttons">
                 <a
-                    class="button is-link is-light"
+                    class="button is-dark"
                     th:each="entry : ${moduleFeatures}"
                     th:href="'#' + ${entry.key}"
                     th:text="${#messages.msgOrNull(entry.key)?:entry.key}"
