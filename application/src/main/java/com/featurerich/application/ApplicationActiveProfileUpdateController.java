@@ -1,4 +1,4 @@
-package com.featurerich.base;
+package com.featurerich.application;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -29,15 +29,15 @@ public class ApplicationActiveProfileUpdateController {
     private final Environment environment;
 
     private String applicationConfigurationPathFormat =
-            "{0}/.featurerich/base/config/base.properties";
+            "{0}/.featurerich/application/config/application.properties";
 
-    @GetMapping("/base/application-active-profile-update")
-    @PreAuthorize("hasAuthority('BASE_APPLICATION_ACTIVE_PROFILE_UPDATE')")
+    @GetMapping("/application/application-active-profile-update")
+    @PreAuthorize("hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
     public ModelAndView applicationActiveProfileUpdateGet() throws IOException {
 
         final ModelAndView modelAndView =
                 new ModelAndView(
-                        "com/featurerich/base/templates/application-active-profile-update");
+                        "com/featurerich/application/templates/application-active-profile-update");
 
         final ApplicationActiveProfileUpdate applicationActiveProfileUpdate =
                 new ApplicationActiveProfileUpdate();
@@ -48,8 +48,8 @@ public class ApplicationActiveProfileUpdateController {
         return modelAndView;
     }
 
-    @PostMapping("/base/application-active-profile-update")
-    @PreAuthorize("hasAuthority('BASE_APPLICATION_ACTIVE_PROFILE_UPDATE')")
+    @PostMapping("/application/application-active-profile-update")
+    @PreAuthorize("hasAuthority('APPLICATION_APPLICATION_ACTIVE_PROFILE_UPDATE')")
     public ModelAndView applicationActiveProfileUpdatePost(
             @Valid @ModelAttribute("applicationActiveProfileUpdate")
                     ApplicationActiveProfileUpdate applicationActiveProfileUpdate,
@@ -58,7 +58,8 @@ public class ApplicationActiveProfileUpdateController {
             throws IOException {
 
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/base/templates/module-configuration-update");
+                new ModelAndView(
+                        "com/featurerich/application/templates/module-configuration-update");
 
         if (bindingResult.hasErrors()) {
 
@@ -89,7 +90,7 @@ public class ApplicationActiveProfileUpdateController {
             properties.store(fileOutputStream, null);
         }
 
-        return new ModelAndView("redirect:/base/application-restart-view");
+        return new ModelAndView("redirect:/application/application-restart-view");
     }
 
     @Getter

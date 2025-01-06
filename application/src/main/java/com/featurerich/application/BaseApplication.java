@@ -1,4 +1,4 @@
-package com.featurerich.base;
+package com.featurerich.application;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
