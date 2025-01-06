@@ -1,6 +1,6 @@
 package com.featurerich.security.userrole;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.security.role.Role;
 import com.featurerich.security.role.RoleRepository;
 import com.featurerich.security.user.User;

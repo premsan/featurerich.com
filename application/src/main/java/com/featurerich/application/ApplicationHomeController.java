@@ -1,4 +1,4 @@
-package com.featurerich.base;
+package com.featurerich.application;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class ApplicationHomeController {
     public ModelAndView homeGet() {
 
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/base/templates/application-home");
+                new ModelAndView("com/featurerich/application/templates/application-home");
         modelAndView.addObject("moduleFeatures", moduleFeatures);
 
         return modelAndView;

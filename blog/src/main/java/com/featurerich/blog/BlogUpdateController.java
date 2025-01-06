@@ -1,6 +1,6 @@
 package com.featurerich.blog;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import lombok.AllArgsConstructor;

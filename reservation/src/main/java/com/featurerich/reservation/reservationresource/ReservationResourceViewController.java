@@ -1,6 +1,6 @@
 package com.featurerich.reservation.reservationresource;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

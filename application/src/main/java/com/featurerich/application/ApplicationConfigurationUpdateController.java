@@ -1,15 +1,13 @@
-package com.featurerich.base;
+package com.featurerich.application;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,49 +16,43 @@ import lombok.Setter;
 import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
-public class ModuleConfigurationUpdateController {
+public class ApplicationConfigurationUpdateController {
 
     private final Environment environment;
 
-    private String baseConfigurationPathFormat = "com/featurerich/{0}/config/{0}.properties";
-
     private String profileConfigurationPathFormat =
-            "{0}/.featurerich/{1}/config/{1}-{2}.properties";
+            "{0}/.featurerich/application/config/application-{1}.properties";
 
-    @GetMapping("/base/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('BASE_MODULE_CONFIGURATION_UPDATE')")
-    public ModelAndView moduleConfigurationUpdateGet(@PathVariable String moduleId)
-            throws IOException {
+    @GetMapping("/application/application-configuration-update")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or"
+                    + " hasAuthority('APPLICATION_APPLICATION_CONFIGURATION_UPDATE')")
+    public ModelAndView applicationConfigurationUpdateGet() {
 
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/base/templates/module-configuration-update");
-        modelAndView.addObject("moduleId", moduleId);
+                new ModelAndView(
+                        "com/featurerich/application/templates/application-configuration-update");
 
         final Map<String, String> properties = new HashMap<>();
 
-        try (final InputStream inputStream =
-                getClass()
-                        .getClassLoader()
-                        .getResourceAsStream(
-                                MessageFormat.format(baseConfigurationPathFormat, moduleId))) {
+        final String configurablePropertiesStr =
+                environment.getProperty(
+                        "com.featurerich.application.configurable-properties", (String) null);
 
-            final Properties loadedProperties = new Properties();
+        if (StringUtils.hasText(configurablePropertiesStr)) {
 
-            if (Objects.nonNull(inputStream)) {
+            final String[] configurableProperties = configurablePropertiesStr.split(",");
 
-                loadedProperties.load(inputStream);
-            }
-
-            for (final String key : loadedProperties.stringPropertyNames()) {
+            for (final String key : configurableProperties) {
 
                 properties.put(key, environment.getProperty(key));
             }
@@ -71,42 +63,44 @@ public class ModuleConfigurationUpdateController {
             return modelAndView;
         }
 
-        ModuleConfigurationUpdate moduleConfigurationUpdate = new ModuleConfigurationUpdate();
-        moduleConfigurationUpdate.setProperties(properties);
+        final ApplicationConfigurationUpdate applicationConfigurationUpdate =
+                new ApplicationConfigurationUpdate();
+        applicationConfigurationUpdate.setProperties(properties);
 
-        modelAndView.addObject("moduleConfigurationUpdate", moduleConfigurationUpdate);
+        modelAndView.addObject("applicationConfigurationUpdate", applicationConfigurationUpdate);
         return modelAndView;
     }
 
-    @PostMapping("/base/module-configuration-update/{moduleId}")
-    @PreAuthorize("hasAuthority('BASE_MODULE_CONFIGURATION_UPDATE')")
-    public ModelAndView moduleConfigurationUpdatePost(
-            @PathVariable String moduleId,
-            @Valid @ModelAttribute("moduleConfigurationUpdate")
-                    ModuleConfigurationUpdate moduleConfigurationUpdate,
+    @PostMapping("/application/application-configuration-update")
+    @PreAuthorize(
+            "hasAuthority('ROLE_ADMIN') or"
+                    + " hasAuthority('APPLICATION_APPLICATION_CONFIGURATION_UPDATE')")
+    public ModelAndView applicationConfigurationUpdatePost(
+            @Valid @ModelAttribute("applicationConfigurationUpdate")
+                    ApplicationConfigurationUpdate applicationConfigurationUpdate,
             BindingResult bindingResult)
             throws IOException {
 
         final ModelAndView modelAndView =
-                new ModelAndView("com/featurerich/base/templates/module-configuration-update");
+                new ModelAndView(
+                        "com/featurerich/application/templates/application-configuration-update");
 
         if (bindingResult.hasErrors()) {
 
-            modelAndView.addObject("moduleId", moduleId);
-            modelAndView.addObject("moduleConfigurationUpdate", moduleConfigurationUpdate);
+            modelAndView.addObject(
+                    "applicationConfigurationUpdate", applicationConfigurationUpdate);
 
             return modelAndView;
         }
 
         final Properties properties = new Properties();
-        properties.putAll(moduleConfigurationUpdate.getProperties());
+        properties.putAll(applicationConfigurationUpdate.getProperties());
 
         final File profileConfigurationFile =
                 new File(
                         MessageFormat.format(
                                 profileConfigurationPathFormat,
                                 System.getProperty("user.home"),
-                                moduleId,
                                 environment.getActiveProfiles()[0]));
 
         if (!profileConfigurationFile.getParentFile().exists()) {
@@ -121,13 +115,13 @@ public class ModuleConfigurationUpdateController {
             properties.store(fileOutputStream, null);
         }
 
-        return new ModelAndView("redirect:/base/application-restart-view");
+        return new ModelAndView("redirect:/application/application-restart-view");
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
-    public class ModuleConfigurationUpdate {
+    public class ApplicationConfigurationUpdate {
 
         @NotNull private Map<String, String> properties;
     }

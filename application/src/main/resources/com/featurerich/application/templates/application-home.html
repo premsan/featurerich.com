@@ -7,7 +7,7 @@
             <h2 class="title is-2">Modules</h2>
             <div class="buttons">
                 <a
-                    class="button is-link is-light"
+                    class="button is-dark"
                     th:each="entry : ${moduleFeatures}"
                     th:href="'#' + ${entry.key}"
                     th:text="${#messages.msgOrNull(entry.key)?:entry.key}"
@@ -23,8 +23,8 @@
                     >entry.key</span
                 >
                 <a
-                    class="icon is-medium"
-                    th:href="'/base/module-configuration-update/' + ${entry.key}"
+                    class="is-size-4 has-text-grey"
+                    th:href="'/application/module-configuration-update/' + ${entry.key}"
                 >
                     <i class="fa-solid fa-gear"></i>
                 </a>

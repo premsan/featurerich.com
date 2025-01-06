@@ -1,6 +1,6 @@
 package com.featurerich.payment.payment;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,6 +1,6 @@
 package com.featurerich.grep;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.io.BufferedReader;

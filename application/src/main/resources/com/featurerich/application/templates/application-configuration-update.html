@@ -3,15 +3,18 @@
     <head th:replace="~{com/featurerich/ui/templates/head-fragment}" />
     <header th:replace="~{com/featurerich/ui/templates/header-fragment}" />
     <body>
-        <section class="section" th:if="${moduleConfigurationUpdate != null}">
+        <section
+            class="section"
+            th:if="${applicationConfigurationUpdate != null}"
+        >
             <form
                 method="post"
-                th:object="${moduleConfigurationUpdate}"
-                th:action="@{'/base/module-configuration-update/' + ${moduleId}}"
+                th:object="${applicationConfigurationUpdate}"
+                th:action="@{/application/application-configuration-update}"
             >
                 <div
                     class="field"
-                    th:each="property : ${moduleConfigurationUpdate.getProperties().entrySet()}"
+                    th:each="property : ${applicationConfigurationUpdate.getProperties().entrySet()}"
                 >
                     <label class="label" th:text="${property.key}">key</label>
                     <div class="control">

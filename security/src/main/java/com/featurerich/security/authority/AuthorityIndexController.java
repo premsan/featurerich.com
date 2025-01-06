@@ -1,6 +1,6 @@
 package com.featurerich.security.authority;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

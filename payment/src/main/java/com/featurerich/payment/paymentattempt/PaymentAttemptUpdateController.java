@@ -1,6 +1,6 @@
 package com.featurerich.payment.paymentattempt;
 
-import com.featurerich.base.FeatureMapping;
+import com.featurerich.application.FeatureMapping;
 import com.featurerich.payment.paymentgateway.PaymentAttemptStatusFetch;
 import com.featurerich.payment.paymentgateway.PaymentAttemptStatusFetched;
 import com.featurerich.payment.paymentgateway.PaymentGateway;
