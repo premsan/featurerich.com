@@ -1,1 +1,1 @@
-# featurerich.com
+# featurerich
